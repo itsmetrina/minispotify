@@ -1,4 +1,4 @@
-/// <reference types="readonly VITE/client" />
+/// <reference types='readonly VITE/client' />
 
 interface ImportMetaEnv {
     readonly VITE_CLIENT_ID: 'string';

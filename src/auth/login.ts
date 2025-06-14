@@ -1,10 +1,10 @@
-import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from "../api/config";
-import { generateCodeChallenge, generateCodeVerifier } from "../utils/pkce";
+import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from '../api/config';
+import { generateCodeChallenge, generateCodeVerifier } from '../utils/pkce';
 
 const clientId = SPOTIFY_CLIENT_ID;
 const redirectUri = SPOTIFY_REDIRECT_URI;
 const scope = 'user-read-private user-read-email';
-const authUrl = new URL("https://accounts.spotify.com/authorize");
+const authUrl = new URL('https://accounts.spotify.com/authorize');
 
 export const redirectToSpotifyLogin = async () => {
     const codeVerifier = generateCodeVerifier();

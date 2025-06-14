@@ -1,19 +1,18 @@
-import { useEffect } from "react"
-import { redirectToSpotifyLogin } from "./auth/login"
+import { useState, useEffect } from 'react'
+import { isLoggedIn } from './utils/auth';
+import Login from './pages/Login';
+import Home from './pages/Home';
 
 const App = () => {
+	const [loggedIn, setLoggedIn] = useState(false);
+
 	useEffect(() => {
-		if (window.location.pathname === "/callback") {
-			import("./auth/callback").then(({ handleRedirectCallback }) => {
-				handleRedirectCallback();
-			});
-		}
+		setLoggedIn(isLoggedIn());
 	}, []);
 
 	return (
-		<div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
-			<h1 className="text-3xl font-bold">MiniSpotify — Coming Soon 🎧</h1>
-			<button type="button" onClick={redirectToSpotifyLogin}>Login with Spotify</button>
+		<div>
+			{loggedIn ? <Home /> : <Login />}
 		</div>
 	)
 }

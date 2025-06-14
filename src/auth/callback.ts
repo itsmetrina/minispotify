@@ -1,4 +1,4 @@
-import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from "../api/config";
+import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from '../api/config';
 
 const clientId = SPOTIFY_CLIENT_ID;
 const redirectUri = SPOTIFY_REDIRECT_URI;
@@ -6,13 +6,13 @@ const redirectUri = SPOTIFY_REDIRECT_URI;
 
 export const handleRedirectCallback = async () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
+    const code = urlParams.get('code');
 
     if (!code) return;
 
-    const codeVerifier = sessionStorage.getItem("code_verifier");
+    const codeVerifier = sessionStorage.getItem('code_verifier');
 
-    const url = "https://accounts.spotify.com/api/token";
+    const url = 'https://accounts.spotify.com/api/token';
     const payload = {
         method: 'POST',
         headers: {
@@ -33,5 +33,5 @@ export const handleRedirectCallback = async () => {
     sessionStorage.setItem('access_token', response.access_token);
 
     // Optionally redirect to home or dashboard
-    window.location.href = "/";
+    window.location.href = '/';
 };

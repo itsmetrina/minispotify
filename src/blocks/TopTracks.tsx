@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { getTopTracks } from "../api/spotify";
+import { useState, useEffect } from 'react';
+import { getTopTracks } from '../api/spotify';
 
 type Track = {
     id: string;
@@ -12,7 +12,7 @@ const TopTracks = () => {
     useEffect(() => {
         const fetchData = async () => {
             const data = await getTopTracks();
-            console.log("Top Tracks:", data);
+            console.log('Top Tracks:', data);
             setTracks(data);
         };
         fetchData();
@@ -26,10 +26,10 @@ const TopTracks = () => {
         //         ))}
         //     </ul>
         // </div>
-        <div className="flex items-center">
+        <div className='flex items-center'>
             {tracks.map((track) => (
-                <div key={track.id} className="flex items-center mr-4">
-                    <img src={`https://i.scdn.co/image/${track.id}`} alt={track.name} className="w-10 h-10 rounded-full mr-2" />
+                <div key={track.id} className='flex items-center mr-4'>
+                    <img src={`https://i.scdn.co/image/${track.id}`} alt={track.name} className='w-10 h-10 rounded-full mr-2' />
                     <span>{track.name}</span>
                 </div>
             ))}
