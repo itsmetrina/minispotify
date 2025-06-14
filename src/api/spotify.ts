@@ -1,5 +1,3 @@
-import { SPOTIFY_ACCESS_TOKEN } from "./config";
-
 const spotifyFetch = async (
     endpoint: string,
     method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
@@ -8,7 +6,7 @@ const spotifyFetch = async (
     const options: RequestInit = {
         method,
         headers: {
-            Authorization: `Bearer ${SPOTIFY_ACCESS_TOKEN}`,
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
             "Content-Type": "application/json",
         },
     };
