@@ -19,7 +19,7 @@ This is **not a commercial clone**, but a portfolio and interview-prep project t
 
 | Area           | Tech Used                       |
 |----------------|----------------------------------|
-| Framework      | React 18 + TypeScript            |
+| Framework      | React 19 + TypeScript            |
 | Styling        | TailwindCSS                      |
 | State Mgmt     | Zustand (or useReducer)          |
 | Routing        | React Router v6                  |
