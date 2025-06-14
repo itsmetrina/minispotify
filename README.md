@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# MiniSpotify 🎧
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A React + TypeScript project inspired by Spotify’s product UI and architecture.  
+> Built for learning, interview preparation, and frontend systems exploration — not for commercial use.
 
-Currently, two official plugins are available:
+## 🎯 Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is **not a commercial clone**, but a portfolio and interview-prep project that aims to:
 
-## Expanding the ESLint configuration
+- Explore **Spotify-like tech stacks** (React, Tailwind, Zustand, REST APIs)
+- Build realistic **music player UI/UX**
+- Practice **frontend system design and architecture**
+- Understand **audio APIs**, playlist state, and async handling
+- Polish a project for **portfolio use** and **top-tier product company interviews**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠️ Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+| Area           | Tech Used                       |
+|----------------|----------------------------------|
+| Framework      | React 18 + TypeScript            |
+| Styling        | TailwindCSS                      |
+| State Mgmt     | Zustand (or useReducer)          |
+| Routing        | React Router v6                  |
+| Audio Player   | HTML5 `<audio>` + custom controls |
+| Auth/API       | Spotify OAuth + Web API          |
+| Tooling        | Vite, Prettier, ESLint           |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🚧 Features In Progress
+
+- ✅ Auth with Spotify (OAuth 2.0)
+- ✅ Fetch top tracks and display
+- ⏳ Playlist builder with drag/drop
+- ⏳ Playback bar + visualizer
+- ⏳ Save playlists to local storage
+- ⏳ Polish and deploy
+
+---
+
+## 🛡️ Disclaimer
+
+This project uses the **Spotify Web API** strictly for **educational and portfolio purposes**.  
+It is not intended for production or commercial use, and adheres to Spotify’s [Developer Terms of Use](https://developer.spotify.com/terms).
+
+---
+
+## 🔗 Live Demo
+
+Coming soon at: https://minispotify.netlify.app
+
+---
+
+## 🤝 License
+
+MIT — free to use and modify for personal learning.
