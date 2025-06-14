@@ -31,6 +31,7 @@ export const handleRedirectCallback = async () => {
     const response = await body.json();
 
     sessionStorage.setItem('access_token', response.access_token);
+    sessionStorage.removeItem('code_verifier');
 
     // Optionally redirect to home or dashboard
     window.location.href = '/';

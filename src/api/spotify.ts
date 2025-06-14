@@ -6,7 +6,7 @@ const spotifyFetch = async (
     const options: RequestInit = {
         method,
         headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+            Authorization: `Bearer ${sessionStorage.getItem('access_token')}`,
             'Content-Type': 'application/json',
         },
     };
