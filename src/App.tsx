@@ -1,5 +1,3 @@
-// import TopTracks from "./blocks/TopTracks"
-
 import { login } from "./auth/login"
 
 const App = () => {
