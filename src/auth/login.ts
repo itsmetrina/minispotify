@@ -3,7 +3,7 @@ import { generateCodeChallenge, generateCodeVerifier } from '../utils/pkce';
 
 const clientId = SPOTIFY_CLIENT_ID;
 const redirectUri = SPOTIFY_REDIRECT_URI;
-const scope = 'user-read-private user-read-email';
+const scope = 'user-read-private user-read-email user-top-read user-read-recently-played playlist-read-private';
 const authUrl = new URL('https://accounts.spotify.com/authorize');
 
 export const redirectToSpotifyLogin = async () => {

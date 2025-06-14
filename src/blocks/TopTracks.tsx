@@ -19,13 +19,6 @@ const TopTracks = () => {
     }, []);
 
     return (
-        // <div>
-        //     <ul>
-        //         {tracks.map((track) => (
-        //             <li key={track.id}>{track.name}</li>
-        //         ))}
-        //     </ul>
-        // </div>
         <div className='flex items-center'>
             {tracks.map((track) => (
                 <div key={track.id} className='flex items-center mr-4'>
