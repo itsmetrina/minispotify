@@ -10,7 +10,7 @@ export const handleRedirectCallback = async () => {
 
     if (!code) return;
 
-    const codeVerifier = localStorage.getItem("code_verifier");
+    const codeVerifier = sessionStorage.getItem("code_verifier");
 
     const url = "https://accounts.spotify.com/api/token";
     const payload = {
@@ -30,7 +30,7 @@ export const handleRedirectCallback = async () => {
     const body = await fetch(url, payload);
     const response = await body.json();
 
-    localStorage.setItem('access_token', response.access_token);
+    sessionStorage.setItem('access_token', response.access_token);
 
     // Optionally redirect to home or dashboard
     window.location.href = "/";

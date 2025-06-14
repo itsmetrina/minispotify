@@ -11,7 +11,7 @@ export const redirectToSpotifyLogin = async () => {
     const codeChallenge = await generateCodeChallenge(codeVerifier);
 
     // Store verifier to use later when exchanging the token
-    window.localStorage.setItem('code_verifier', codeVerifier);
+    window.sessionStorage.setItem('code_verifier', codeVerifier);
 
     const params = new URLSearchParams({
         response_type: 'code',
