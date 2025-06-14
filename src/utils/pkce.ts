@@ -1,21 +1,28 @@
-export function generateRandomString(length: number): string {
-    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    Array.from(crypto.getRandomValues(new Uint8Array(length))).forEach((byte) => {
-        result += charset[byte % charset.length];
-    });
-    return result;
+const generateRandomString = (length: number) => {
+	const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	const values = crypto.getRandomValues(new Uint8Array(length));
+	return values.reduce((acc, x) => acc + possible[x % possible.length], "");
 }
 
-export function generateCodeVerifier(): string {
-    return generateRandomString(128);
+
+export const generateCodeVerifier = (): string => {
+	return generateRandomString(64);
+};
+
+const sha256 = async (plain: string | undefined) => {
+	const encoder = new TextEncoder()
+	const data = encoder.encode(plain)
+	return window.crypto.subtle.digest('SHA-256', data)
 }
 
-export async function generateCodeChallenge(codeVerifier: string): Promise<string> {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(codeVerifier);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashBase64 = btoa(String.fromCharCode(...hashArray));
-    return hashBase64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const base64encode = (input: ArrayBuffer) => {
+	return btoa(String.fromCharCode(...new Uint8Array(input)))
+		.replace(/=/g, '')
+		.replace(/\+/g, '-')
+		.replace(/\//g, '_');
 }
+
+export const generateCodeChallenge = async (codeVerifier: string): Promise<string> => {
+	const hashed = await sha256(codeVerifier);
+	return base64encode(hashed);
+};
