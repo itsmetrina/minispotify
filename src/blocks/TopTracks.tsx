@@ -22,7 +22,7 @@ const TopTracks = () => {
         <div className='flex items-center'>
             {tracks.map((track) => (
                 <div key={track.id} className='flex items-center mr-4'>
-                    <img src={`https://i.scdn.co/image/${track.id}`} alt={track.name} className='w-10 h-10 rounded-full mr-2' />
+                    {/* <img src={`https://i.scdn.co/image/${track.id}`} alt={track.name} className='w-10 h-10 rounded-full mr-2' /> */}
                     <span>{track.name}</span>
                 </div>
             ))}

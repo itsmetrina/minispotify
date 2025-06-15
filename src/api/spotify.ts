@@ -25,10 +25,34 @@ const spotifyFetch = async (
     return await res.json();
 }
 
+export const fetchProfile = async () => {
+    const response = await spotifyFetch(
+        'v1/me',
+        'GET'
+    );
+    return await response.json();
+};
+
 export const getTopTracks = async () => {
     const response = await spotifyFetch(
         'v1/me/top/tracks?time_range=long_term&limit=5',
         'GET'
     );
-    return response.items;
-};
+    return await response.json();
+}
+
+export const getByAlbumId = async (id: string) => {
+    const response = await spotifyFetch(
+        `v1/albums/${id}`,
+        'GET'
+    );
+    return await response.json();
+}
+
+export const getByArtistId = async (id: string) => {
+    const response = await spotifyFetch(
+        `v1/artists/${id}`,
+        'GET'
+    );
+    return await response.json();
+}
