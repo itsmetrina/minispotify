@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router';
+import { useState, useEffect } from "react";
+import { Navigate, Route, Routes } from "react-router";
 
-import Logout from './blocks/Logout';
-import TopTracks from './blocks/TopTracks';
-import UserProfile from './blocks/UserProfile';
+import Logout from "./blocks/Logout";
+import TopTracks from "./blocks/TopTracks";
+import UserProfile from "./blocks/UserProfile";
 
-import Home from './pages/Home';
-import Login from './pages/Login';
+import Welcome from "./pages/Welcome";
+import Login from "./pages/Login";
 
-import { isLoggedIn } from './utils/auth';
-import SecureRoutes from './utils/SecureRoutes';
+import { isLoggedIn } from "./utils/auth";
+import SecureRoutes from "./utils/SecureRoutes";
 
 
 const App = () => {
@@ -21,37 +21,37 @@ const App = () => {
 	
 	return (
 		<Routes>
-			<Route path='/login' element={<Login />} />
+			<Route path="/login" element={<Login />} />
 
-			<Route path='/user' element={
+			<Route path="/user" element={
 				<SecureRoutes>
 					<UserProfile />
 				</SecureRoutes>
 			} />
-			<Route path='/home' element={
+			<Route path="/welcome" element={
 				<SecureRoutes>
-					<Home />
+					<Welcome />
 				</SecureRoutes>
 			} />
-			<Route path='/tops' element={
+			<Route path="/tops" element={
 				<SecureRoutes>
 					<TopTracks />
 				</SecureRoutes>
 			} />
-			<Route path='/logout' element={
+			<Route path="/logout" element={
 				<SecureRoutes>
 					<Logout />
 				</SecureRoutes>
 			} />
 			<Route path="/" element={
 				loggedIn
-					? <Navigate to="/home" />
+					? <Navigate to="/welcome" />
 					: <Navigate to="/login" />
 			} />
 
 			<Route path="*" element={
 				loggedIn
-					? <Navigate to="/home" />
+					? <Navigate to="/welcome" />
 					: <Navigate to="/login" />
 			} />
 		</Routes>

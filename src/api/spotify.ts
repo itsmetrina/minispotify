@@ -1,17 +1,17 @@
 const spotifyFetch = async (
     endpoint: string,
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
+    method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
     body?: any
 ) => {
     const options: RequestInit = {
         method,
         headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('access_token')}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+            "Content-Type": "application/json",
         },
     };
 
-    if (body && method !== 'GET') {
+    if (body && method !== "GET") {
         options.body = JSON.stringify(body);
     }
 
@@ -27,16 +27,16 @@ const spotifyFetch = async (
 
 export const fetchProfile = async () => {
     const response = await spotifyFetch(
-        'v1/me',
-        'GET'
+        "v1/me",
+        "GET"
     );
     return await response;
 };
 
 export const getTopTracks = async () => {
     const response = await spotifyFetch(
-        'v1/me/top/tracks?time_range=long_term&limit=5',
-        'GET'
+        "v1/me/top/tracks?time_range=long_term&limit=5",
+        "GET"
     );
     return await response.items;
 }
@@ -44,7 +44,7 @@ export const getTopTracks = async () => {
 export const getByAlbumId = async (id: string) => {
     const response = await spotifyFetch(
         `v1/albums/${id}`,
-        'GET'
+        "GET"
     );
     return await response.json();
 }
@@ -52,7 +52,7 @@ export const getByAlbumId = async (id: string) => {
 export const getByArtistId = async (id: string) => {
     const response = await spotifyFetch(
         `v1/artists/${id}`,
-        'GET'
+        "GET"
     );
     return await response.json();
 }

@@ -1,10 +1,10 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 
 const SecureRoutes = ({ children }: { children: React.ReactNode }) => {
-    const accessToken = sessionStorage.getItem('access_token');
+    const accessToken = sessionStorage.getItem("access_token");
 
     if (!accessToken) {
-        return <Navigate to='/login' replace={true} />
+        return <Navigate to="/login" replace={true} />
     }
     return <>{children}</>;
 }
