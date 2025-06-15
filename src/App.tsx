@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
+
+import Logout from './blocks/Logout';
+import TopTracks from './blocks/TopTracks';
 import UserProfile from './blocks/UserProfile';
+
 import Home from './pages/Home';
 import Login from './pages/Login';
+
 import { isLoggedIn } from './utils/auth';
 import SecureRoutes from './utils/SecureRoutes';
+
 
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -12,6 +18,7 @@ const App = () => {
 	useEffect(() => {
 		setLoggedIn(isLoggedIn());
 	}, []);
+	
 	return (
 		<Routes>
 			<Route path='/login' element={<Login />} />
@@ -26,9 +33,14 @@ const App = () => {
 					<Home />
 				</SecureRoutes>
 			} />
+			<Route path='/tops' element={
+				<SecureRoutes>
+					<TopTracks />
+				</SecureRoutes>
+			} />
 			<Route path='/logout' element={
 				<SecureRoutes>
-					<Login />
+					<Logout />
 				</SecureRoutes>
 			} />
 			<Route path="/" element={
