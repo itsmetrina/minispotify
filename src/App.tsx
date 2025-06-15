@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { isLoggedIn } from './utils/auth';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import { Route, Routes } from 'react-router';
 
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -11,9 +12,17 @@ const App = () => {
 	}, []);
 
 	return (
-		<div>
-			{loggedIn ? <Home /> : <Login />}
-		</div>
+		<>
+			<Routes>
+				{loggedIn ? (
+					<>
+						<Route path="/home" element={<Home />} />
+					</>
+				) : (
+					<Route path="/login" element={<Login />} />
+				)}
+			</Routes>
+		</>
 	)
 }
 
