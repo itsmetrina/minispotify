@@ -5,5 +5,5 @@ export const isLoggedIn = () => {
 export const logout = () => {
 	sessionStorage.removeItem('access_token');
 	sessionStorage.removeItem('code_verifier');
-	window.location.href = '/';
+	window.location.href = '/login';
 };

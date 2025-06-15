@@ -34,5 +34,5 @@ export const handleRedirectCallback = async () => {
     sessionStorage.removeItem('code_verifier');
 
     // Optionally redirect to home or dashboard
-    window.location.href = '/';
+    window.location.href = '/home';
 };

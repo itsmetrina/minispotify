@@ -7,13 +7,13 @@ import SecureRoutes from './utils/secureRoutes';
 const App = () => {
 	return (
 		<Routes>
-			<Route path="/login" element={<Login />} />
-			<Route path="/" element={
+			<Route path='/login' element={<Login />} />
+			<Route path='/user' element={
 				<SecureRoutes>
 					<UserProfile />
 				</SecureRoutes>
 			} />
-			<Route path="/home" element={
+			<Route path='/home' element={
 				<SecureRoutes>
 					<Home />
 				</SecureRoutes>
