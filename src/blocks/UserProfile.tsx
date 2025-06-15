@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchProfile } from '../api/spotify';
-import { avatarMap } from '../assets/avatars/avatarMap';
+import { avatarMap } from '../utils/avatarMap';
 
 const UserProfile = () => {
     const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
