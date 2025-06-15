@@ -3,8 +3,8 @@ import { Navigate, Route, Routes } from 'react-router';
 import UserProfile from './blocks/UserProfile';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import SecureRoutes from './utils/secureRoutes';
 import { isLoggedIn } from './utils/auth';
+import SecureRoutes from './utils/SecureRoutes';
 
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
