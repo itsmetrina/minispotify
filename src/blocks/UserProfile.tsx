@@ -26,16 +26,16 @@ const UserProfile = () => {
     };
 
     return (
-        <div className='p-4 rounded-lg shadow-md max-w-md mx-auto flex flex-col items-start'>
-            {userErr && <div>Error fetching user profile</div>}
-            {userProfile && <div>
+        <div className='p-4 rounded-lg bg-gray-500 shadow-lg shadow-gray-500/50 flex flex-col items-start'>
+            {userErr && <>Error fetching user profile</>}
+            {userProfile && <>
                 <h2 className='text-xl font-bold mb-4'>Hello, {userProfile?.display_name || '...'}</h2>
                 <img src={avatar} alt='User Avatar' className='w-24 h-24 rounded-full mb-4' />
                 <p className='text-sm mb-2'>Email: {userProfile?.email || 'N/A'}</p>
                 <p className='text-sm mb-2'>Followers: {userProfile?.followers?.total || 0}</p>
                 <p className='text-sm mb-2'>Country: {getCountryName(userProfile?.country) || 'N/A'}</p>
                 <p className='text-sm mb-2'>Subscription: {userProfile?.product || 'N/A'}</p>
-            </div>}
+            </>}
         </div>
     )
 }
