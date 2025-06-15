@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { fetchProfile } from '../api/spotify';
+import { avatarMap } from '../assets/avatars/avatarMap';
 
 const UserProfile = () => {
     const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
     const [userProfile, setUserProfile] = useState<any>(null);
-    const [avatar, setAvatar] = useState<string>('/avatars/avatar-' + getRandomAvatarNumber() + '.svg');
+    const [avatar, setAvatar] = useState<string>(avatarMap[getRandomAvatarNumber()]);
     const [userErr, setUserErr] = useState<any>(null);
 
     useEffect(() => {
@@ -12,7 +13,7 @@ const UserProfile = () => {
             try {
                 const data = await fetchProfile();
                 setUserProfile(data);
-                setAvatar(data?.images?.[0]?.url || '/avatars/avatar-' + getRandomAvatarNumber() + '.svg');
+                setAvatar(data?.images?.[0]?.url || avatarMap[getRandomAvatarNumber()]);
             } catch (error) {
                 setUserErr(error);
             }
