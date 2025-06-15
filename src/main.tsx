@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 if (window.location.pathname === '/callback') {
 	import('./auth/callback').then(({ handleRedirectCallback }) => {
 		handleRedirectCallback().then(() => {
-			window.location.href = '/';
+			window.location.href = '/home';
 		});
 	});
 } else {

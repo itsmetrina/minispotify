@@ -1,13 +1,21 @@
-import Login from './pages/Login';
-import Home from './pages/Home';
-import { Route, Routes } from 'react-router';
+import { useState, useEffect } from 'react';
+import { Navigate, Route, Routes } from 'react-router';
 import UserProfile from './blocks/UserProfile';
+import Home from './pages/Home';
+import Login from './pages/Login';
 import SecureRoutes from './utils/secureRoutes';
+import { isLoggedIn } from './utils/auth';
 
 const App = () => {
+	const [loggedIn, setLoggedIn] = useState(false);
+
+	useEffect(() => {
+		setLoggedIn(isLoggedIn());
+	}, []);
 	return (
 		<Routes>
 			<Route path='/login' element={<Login />} />
+
 			<Route path='/user' element={
 				<SecureRoutes>
 					<UserProfile />
@@ -17,6 +25,22 @@ const App = () => {
 				<SecureRoutes>
 					<Home />
 				</SecureRoutes>
+			} />
+			<Route path='/logout' element={
+				<SecureRoutes>
+					<Login />
+				</SecureRoutes>
+			} />
+			<Route path="/" element={
+				loggedIn
+					? <Navigate to="/home" />
+					: <Navigate to="/login" />
+			} />
+
+			<Route path="*" element={
+				loggedIn
+					? <Navigate to="/home" />
+					: <Navigate to="/login" />
 			} />
 		</Routes>
 	)
