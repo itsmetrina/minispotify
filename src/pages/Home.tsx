@@ -18,7 +18,7 @@ const Home = () => {
         <div className='columns-2'>
             <div className='col-span-1'>
                 <h2 className='text-xl font-bold'>Hello, {userDetails?.display_name || '...'}</h2>
-                <button type="button" onClick={logout}>
+                <button type="button" onClick={logout} className='w-12'>
                     <img src="/logout.svg" alt="Logout" />
                 </button>
             </div>

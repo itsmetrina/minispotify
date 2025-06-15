@@ -30,7 +30,7 @@ export const fetchProfile = async () => {
         'v1/me',
         'GET'
     );
-    return await response.json();
+    return await response;
 };
 
 export const getTopTracks = async () => {
@@ -38,7 +38,7 @@ export const getTopTracks = async () => {
         'v1/me/top/tracks?time_range=long_term&limit=5',
         'GET'
     );
-    return await response.json();
+    return await response.items;
 }
 
 export const getByAlbumId = async (id: string) => {
