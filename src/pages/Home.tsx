@@ -15,16 +15,14 @@ const Home = () => {
     }, []);
 
     return (
-        <div className='columns-2'>
-            <div className='col-span-1'>
-                <h2 className='text-xl font-bold'>Hello, {userDetails?.display_name || '...'}</h2>
-                <button type="button" onClick={logout} className='w-12'>
-                    <img src="/logout.svg" alt="Logout" />
+        <div className='min-h-screen'>
+            <div className='flex flex-col items-center justify-center min-h-screen bg-black text-white'>
+                <h2 className='text-xl font-bold mb-4'>Hello, {userDetails?.display_name || '...'}</h2>
+                <button type="button" onClick={logout} className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4'>
+                    Logout
                 </button>
-            </div>
-            <div className='col-span-1'>
-                <h1 className='text-2xl font-bold'>🎵 Welcome to MiniSpotify!</h1>
-                <h2 className='text-xl font-bold'>Top Tracks</h2>
+                <h1 className='text-2xl font-bold mb-4'>🎵 Welcome to MiniSpotify!</h1>
+                <h2 className='text-xl font-bold mb-4'>Top Tracks</h2>
                 <TopTracks />
             </div>
         </div>
