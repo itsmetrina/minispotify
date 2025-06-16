@@ -3,6 +3,7 @@ import avatar2 from "./../assets/avatars/avatar-2.svg";
 import avatar3 from "./../assets/avatars/avatar-3.svg";
 import avatar4 from "./../assets/avatars/avatar-4.svg";
 import avatar5 from "./../assets/avatars/avatar-5.svg";
+import avatar6 from "./../assets/avatars/avatar-5.svg";
 
 export const avatarMap: Record<number, string> = {
     1: avatar1,
@@ -10,4 +11,5 @@ export const avatarMap: Record<number, string> = {
     3: avatar3,
     4: avatar4,
     5: avatar5,
+    6: avatar6
 };
