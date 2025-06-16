@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchProfile } from "../api/spotify";
-// import { avatarMap } from "../utils/avatarMap";
 import { useUserStore } from "../store/useUserStore";
+import { avatarMap } from "../utils/avatarMap";
 
 const UserProfile = () => {
     const { user, setUser } = useUserStore();
@@ -31,7 +31,7 @@ const UserProfile = () => {
             {user && <>
                 <h2 className="text-xl font-bold mb-4">Hello, {user.display_name || '...'}</h2>
                 <img
-                    src={user?.images?.[0]?.url || `/avatars/avatar-${getRandomAvatarNumber()}.svg`}
+                    src={user?.images?.[0]?.url || avatarMap[getRandomAvatarNumber()]}
                     alt={user.display_name + "'s avatar"}
                     className="w-24 h-24 rounded-full mb-4"
                 />
