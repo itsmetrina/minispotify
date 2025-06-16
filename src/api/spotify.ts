@@ -14,7 +14,6 @@ const spotifyFetch = async (
             "Content-Type": "application/json",
         },
     };
-    console.log(options, "spotifyFetch options");
 
     if (body && method !== "GET") {
         options.body = JSON.stringify(body);

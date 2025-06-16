@@ -12,7 +12,6 @@ const TopTracks = () => {
     useEffect(() => {
         const fetchData = async () => {
             const data = await getTopTracks();
-            console.log("Top Tracks:", data);
             setTracks(data);
         };
         fetchData();
