@@ -14,7 +14,7 @@ export const useAuthStore = create<AuthState>()(
             clearAccessToken: () => set({ accessToken: null }),
         }),
         {
-            name: "auth-storage",
+            name: "access_token",
             storage: createJSONStorage(() => sessionStorage)
         }
     )

@@ -6,6 +6,7 @@ const SecureRoutes = ({ children }: { children: React.ReactNode }) => {
     const accessToken = useAuthStore((state) => state.accessToken);
 
     if (!accessToken) {
+        console.log(accessToken)
         return <Navigate to="/login" replace={true} />
     }
     return <>{children}</>;
