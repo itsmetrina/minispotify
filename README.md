@@ -49,7 +49,7 @@ It is not intended for production or commercial use, and adheres to Spotify’s 
 
 ## 🔗 Live Demo
 
-Coming soon at: https://minispotify.netlify.app
+Coming soon at: https://miniispotify.netlify.app/
 
 ---
 
