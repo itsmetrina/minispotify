@@ -1,4 +1,5 @@
 import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from "../api/config";
+import { useAuthStore } from "../store/useAuthStore";
 
 const clientId = SPOTIFY_CLIENT_ID;
 const redirectUri = SPOTIFY_REDIRECT_URI;
@@ -7,6 +8,7 @@ const redirectUri = SPOTIFY_REDIRECT_URI;
 export const handleRedirectCallback = async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
+    const { setAccessToken } = useAuthStore.getState();
 
     if (!code) return;
 
@@ -30,7 +32,8 @@ export const handleRedirectCallback = async () => {
     const body = await fetch(url, payload);
     const response = await body.json();
 
-    sessionStorage.setItem("access_token", response.access_token);
+    // sessionStorage.setItem("access_token", response.access_token);
+    setAccessToken(response.access_token);
     sessionStorage.removeItem("code_verifier");
 
     // Optionally redirect to welcome or dashboard

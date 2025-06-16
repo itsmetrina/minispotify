@@ -4,7 +4,6 @@ const generateRandomString = (length: number) => {
 	return values.reduce((acc, x) => acc + possible[x % possible.length], "");
 }
 
-
 export const generateCodeVerifier = (): string => {
 	return generateRandomString(64);
 };
