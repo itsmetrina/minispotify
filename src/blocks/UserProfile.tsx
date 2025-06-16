@@ -15,6 +15,7 @@ const UserProfile = () => {
                 setUserProfile(data);
                 setAvatar(data?.images?.[0]?.url || avatarMap[getRandomAvatarNumber()]);
             } catch (error) {
+                console.error("Error fetching user profile:", error);
                 setUserErr(error);
             }
         };
