@@ -9,7 +9,7 @@ const UserProfile = () => {
     const getCountryName = (countryCode: string) =>
         new Intl.DisplayNames(['en'], { type: 'region' }).of(countryCode.toUpperCase());
 
-    // const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
+    const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -31,8 +31,8 @@ const UserProfile = () => {
             {user && <>
                 <h2 className="text-xl font-bold mb-4">Hello, {user.display_name || '...'}</h2>
                 <img
-                    src={user?.images?.[0]?.url || '/avatars/avatar-1.svg'}
-                    alt="User Avatar"
+                    src={user?.images?.[0]?.url || `/avatars/avatar-${getRandomAvatarNumber()}.svg`}
+                    alt={user.display_name + "'s avatar"}
                     className="w-24 h-24 rounded-full mb-4"
                 />
                 <p className="text-sm mb-2">Email: {user.email}</p>
