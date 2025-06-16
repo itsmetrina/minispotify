@@ -5,10 +5,12 @@ const spotifyFetch = async (
     method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
     body?: any
 ) => {
+    const token = useAuthStore.getState().accessToken;
+    if(!token) throw new Error("No access token found. Please authenticate first.");
     const options: RequestInit = {
         method,
         headers: {
-            Authorization: `Bearer ${useAuthStore((state) => state.accessToken)}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
         },
     };
