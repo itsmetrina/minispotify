@@ -1,3 +1,5 @@
+import { useAuthStore } from "../store/useAuthStore";
+
 const spotifyFetch = async (
     endpoint: string,
     method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
@@ -6,7 +8,7 @@ const spotifyFetch = async (
     const options: RequestInit = {
         method,
         headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+            Authorization: `Bearer ${useAuthStore((state) => state.accessToken)}`,
             "Content-Type": "application/json",
         },
     };
