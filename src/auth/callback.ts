@@ -12,7 +12,10 @@ export const handleRedirectCallback = async () => {
 
     if (!code) return;
 
-    const codeVerifier = sessionStorage.getItem("code_verifier");
+    const codeVerifier = useAuthStore.getState().codeVerifier;
+    if (!codeVerifier) {
+        throw new Error("No code_verifier found in store");
+    }
 
     const url = "https://accounts.spotify.com/api/token";
     const payload = {
@@ -32,10 +35,9 @@ export const handleRedirectCallback = async () => {
     const body = await fetch(url, payload);
     const response = await body.json();
 
-    // sessionStorage.setItem("access_token", response.access_token);
     setAccessToken(response.access_token);
-    sessionStorage.removeItem("code_verifier");
-
+    useAuthStore.getState().clearCodeVerifier();
+    
     // Optionally redirect to welcome or dashboard
     window.location.href = "/welcome";
 };

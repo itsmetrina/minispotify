@@ -1,4 +1,5 @@
 import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from "../api/config";
+import { useAuthStore } from "../store/useAuthStore";
 import { generateCodeChallenge, generateCodeVerifier } from "../utils/pkce";
 
 const clientId = SPOTIFY_CLIENT_ID;
@@ -9,9 +10,7 @@ const authUrl = new URL("https://accounts.spotify.com/authorize");
 export const redirectToSpotifyLogin = async () => {
     const codeVerifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(codeVerifier);
-
-    // Store verifier to use later when exchanging the token
-    window.sessionStorage.setItem("code_verifier", codeVerifier);
+    useAuthStore.getState().setCodeVerifier(codeVerifier);
 
     const params = new URLSearchParams({
         response_type: "code",

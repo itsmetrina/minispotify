@@ -3,6 +3,9 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 interface AuthState {
     _hasHydrated: boolean;
+    codeVerifier: string | null;
+    setCodeVerifier: (verifier: string) => void;
+    clearCodeVerifier: () => void;
     accessToken: string | null;
     setAccessToken: (token:string) => void;
     clearAccessToken: () => void;
@@ -10,6 +13,9 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
     persist(
         (set) => ({
+            codeVerifier: null,
+            setCodeVerifier: (verifier: string) => set({ codeVerifier: verifier }),
+            clearCodeVerifier: () => set({ codeVerifier: null }),
             accessToken: null,
             setAccessToken: (token: string) => set({ accessToken: token }),
             clearAccessToken: () => set({ accessToken: null }),
