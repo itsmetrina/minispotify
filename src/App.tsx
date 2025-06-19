@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import { isLoggedIn } from "./utils/auth";
 import { loadUserSpotifyData } from "./api/fetchSpotifyData";
 import SecureRoutes from "./utils/SecureRoutes";
+import Dashboard from "./pages/Dashboard";
 
 
 const App = () => {
@@ -21,6 +22,9 @@ const App = () => {
 	}, []);
 	
 	return (
+		// <>
+		// 	<Dashboard />
+		// </>
 		<Routes>
 			<Route path="/login" element={<Login />} />
 
@@ -34,9 +38,9 @@ const App = () => {
 					<Welcome />
 				</SecureRoutes>
 			} />
-			<Route path="/tops" element={
+			<Route path="/dasboard" element={
 				<SecureRoutes>
-					<TopTracks />
+					<Dashboard />
 				</SecureRoutes>
 			} />
 			<Route path="/logout" element={
