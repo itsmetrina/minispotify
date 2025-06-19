@@ -1,4 +1,4 @@
-import { getFollowedArtists, getSavedTracks, getTopArtists, getTopTracks, getProfile, getSavedShows, getAvailableDevices, getCurrentlyPlaying, getPlaybackState, getPlaylists, getQueue, getRecentlyPlayed, getSavedAlbums, getSavedAudiobooks, getSavedEpisodes } from "../api/spotifyAPI";
+import { getFollowedArtists, getSavedTracks, getTopArtists, getTopTracks, getProfile, getSavedShows, getAvailableDevices, getCurrentlyPlaying, getPlaybackState, getPlaylists, getRecentlyPlayed, getSavedAlbums, getSavedAudiobooks, getSavedEpisodes } from "../api/spotifyAPI";
 import { useUserStore } from "../store/useUserStore";
 
 export const loadUserSpotifyData = async () => {
