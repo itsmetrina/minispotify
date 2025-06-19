@@ -7,6 +7,6 @@ export const isLoggedIn = () => {
 
 export const logout = () => {
 	useAuthStore.getState().clearAccessToken();
-	useUserStore.getState().clearUser();
+	useUserStore.getState().clearUserData();
 	window.location.href = "/login";
 };

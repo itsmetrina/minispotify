@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router";
 
 import Logout from "./blocks/Logout";
@@ -9,14 +9,15 @@ import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 
 import { isLoggedIn } from "./utils/auth";
+import { loadUserSpotifyData } from "./api/fetchSpotifyData";
 import SecureRoutes from "./utils/SecureRoutes";
 
 
 const App = () => {
-	const [loggedIn, setLoggedIn] = useState(false);
-
 	useEffect(() => {
-		setLoggedIn(isLoggedIn());
+		if(isLoggedIn()) {
+			loadUserSpotifyData();
+		}
 	}, []);
 	
 	return (
@@ -44,13 +45,13 @@ const App = () => {
 				</SecureRoutes>
 			} />
 			<Route path="/" element={
-				loggedIn
+				isLoggedIn()
 					? <Navigate to="/welcome" />
 					: <Navigate to="/login" />
 			} />
 
 			<Route path="*" element={
-				loggedIn
+				isLoggedIn()
 					? <Navigate to="/welcome" />
 					: <Navigate to="/login" />
 			} />

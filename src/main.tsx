@@ -2,7 +2,7 @@ import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import "./index.css"
 import App from "./App.tsx"
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 
 if (window.location.pathname === "/callback") {
 	import("./auth/callback").then(({ handleRedirectCallback }) => {
@@ -13,9 +13,9 @@ if (window.location.pathname === "/callback") {
 } else {
 	createRoot(document.getElementById("root")!).render(
 		<StrictMode>
-			<BrowserRouter>
+			{/* <BrowserRouter> */}
 				<App />
-			</BrowserRouter>
+			{/* </BrowserRouter> */}
 		</StrictMode>,
 	)
 }
