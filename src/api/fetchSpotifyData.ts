@@ -1,4 +1,4 @@
-import { getFollowedArtists, getSavedTracks, getTopArtists, getTopTracks, getProfile, getSavedShows, getAvailableDevices, getCurrentlyPlaying, getPlaybackState, getPlaylists, getRecentlyPlayed, getSavedAlbums, getSavedAudiobooks, getSavedEpisodes } from "../api/spotifyAPI";
+import { getFollowedArtists, getSavedTracks, getTopArtists, getTopTracks, getProfile, getSavedShows, getPlaylists, getRecentlyPlayed, getSavedAlbums, getSavedAudiobooks, getSavedEpisodes } from "../api/spotifyAPI";
 import { useUserStore } from "../store/useUserStore";
 
 export const loadUserSpotifyData = async () => {
@@ -13,9 +13,9 @@ export const loadUserSpotifyData = async () => {
 			playlists,
 			recentlyPlayed,
 			// queue,
-			currentlyPlayingTrack,
-			availableDevices,
-			playbackState,
+			// currentlyPlayingTrack,
+			// availableDevices,
+			// playbackState,
 			savedEpisodes,
 			savedAudiobooks,
 			savedAlbums
@@ -29,9 +29,9 @@ export const loadUserSpotifyData = async () => {
 			getPlaylists(10),
 			getRecentlyPlayed(10),
 			// getQueue(),
-			getCurrentlyPlaying(),
-			getAvailableDevices(),
-			getPlaybackState(),
+			// getCurrentlyPlaying(),
+			// getAvailableDevices(),
+			// getPlaybackState(),
 			getSavedEpisodes(10),
 			getSavedAudiobooks(10),
 			getSavedAlbums(10)
@@ -43,16 +43,16 @@ export const loadUserSpotifyData = async () => {
 			topArtists: topArtists,
 			followedArtists: followedArtists,
 			savedTracks: savedTracks,
-            savedShows: savedShows,
-            playlists: playlists,
-            recentlyPlayed: recentlyPlayed,
-            // queue: queue,
-            currentlyPlayingTrack: currentlyPlayingTrack,
-            availableDevices: availableDevices,
-            playbackState: playbackState,
-            savedEpisodes: savedEpisodes,
-            savedAudiobooks: savedAudiobooks,
-            savedAlbums: savedAlbums
+			savedShows: savedShows,
+			playlists: playlists,
+			recentlyPlayed: recentlyPlayed,
+			// queue: queue,
+			// currentlyPlayingTrack: currentlyPlayingTrack,
+			// availableDevices: availableDevices,
+			// playbackState: playbackState,
+			savedEpisodes: savedEpisodes,
+			savedAudiobooks: savedAudiobooks,
+			savedAlbums: savedAlbums
 		});
 	} catch (error) {
 		console.error('Failed to load Spotify data:', error);
