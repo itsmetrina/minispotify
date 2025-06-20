@@ -1,6 +1,6 @@
-import { ArtistCard } from "../blocks/ArtistCard"
+// import { ArtistCard } from "../blocks/ArtistCard"
 import { Grid } from "../blocks/Grid"
-import { PlaylistCard } from "../blocks/PlaylistCard"
+// import { PlaylistCard } from "../blocks/PlaylistCard"
 import { Section } from "../blocks/Section"
 import { TrackCard } from "../blocks/TrackCard"
 import { useUserStore } from "../store/useUserStore"
@@ -9,10 +9,10 @@ const Dashboard = () => {
     const {
         // userProfile,
         topTracks,
-        topArtists,
-        recentlyPlayed,
+        // topArtists,
+        // recentlyPlayed,
         // currentlyPlaying,
-        playlists,
+        // playlists,
     } = useUserStore();
 
     return (
