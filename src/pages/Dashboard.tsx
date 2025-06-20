@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { ArtistCard } from "../blocks/ArtistCard"
 import { Grid } from "../blocks/Grid"
 import { PlaylistCard } from "../blocks/PlaylistCard"
@@ -14,6 +15,11 @@ const Dashboard = () => {
         // currentlyPlaying,
         playlists,
     } = useUserStore();
+
+    useEffect(() => {
+        console.log(topTracks)
+    }, []);
+
     return (
         <div className="p-6 space-y-10">
             {/* <Header user={userProfile} /> */}
