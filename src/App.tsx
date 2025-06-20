@@ -11,15 +11,24 @@ import { isLoggedIn } from "./utils/auth";
 import { loadUserSpotifyData } from "./api/loadSpotifyData";
 import SecureRoutes from "./utils/SecureRoutes";
 import Dashboard from "./pages/Dashboard";
+import { useUserStore } from "./store/useUserStore";
 
 
 const App = () => {
+	const {
+		topTracks,
+		topArtists,
+		recentlyPlayed,
+		playlists
+	} = useUserStore();
+
 	useEffect(() => {
-		if(isLoggedIn()) {
+		if (isLoggedIn()) {
 			loadUserSpotifyData();
+			console.log(topTracks, topArtists, recentlyPlayed, playlists, 'topTracks, topArtists,recentlyPlayed,playlists')
 		}
 	}, []);
-	
+
 	return (
 		// <>
 		// 	<Dashboard />
