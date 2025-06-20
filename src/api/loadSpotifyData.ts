@@ -1,10 +1,18 @@
-import { getFollowedArtists, getSavedTracks, getTopArtists, getTopTracks, getProfile, getSavedShows, getPlaylists, getRecentlyPlayed, getSavedAlbums, getSavedAudiobooks, getSavedEpisodes } from "../api/spotifyAPI";
+import { getFollowedArtists, getSavedTracks, getTopArtists, getTopTracks, getProfile, getSavedShows, getPlaylists, getRecentlyPlayed, getSavedAlbums, getSavedAudiobooks, getSavedEpisodes } from "./spotifyAPI";
 import { useUserStore } from "../store/useUserStore";
 
+const isStale = (timestamp: number | null, ttlMinutes = 60) => {
+	if (!timestamp) return true;
+	return Date.now() - timestamp > ttlMinutes * 60 * 1000;
+};
+
 export const loadUserSpotifyData = async () => {
+	const { setUserData, lastFetchedAt } = useUserStore.getState();
+	if (!isStale(lastFetchedAt)) return true;
+
 	try {
 		const [
-			profile,
+			userProfile,
 			topTracks,
 			topArtists,
 			followedArtists,
@@ -37,22 +45,22 @@ export const loadUserSpotifyData = async () => {
 			getSavedAlbums(10)
 		]);
 
-		useUserStore.getState().setUserData({
-			userProfile: profile,
-			topTracks: topTracks,
-			topArtists: topArtists,
-			followedArtists: followedArtists,
-			savedTracks: savedTracks,
-			savedShows: savedShows,
-			playlists: playlists,
-			recentlyPlayed: recentlyPlayed,
-			// queue: queue,
-			// currentlyPlayingTrack: currentlyPlayingTrack,
-			// availableDevices: availableDevices,
-			// playbackState: playbackState,
-			savedEpisodes: savedEpisodes,
-			savedAudiobooks: savedAudiobooks,
-			savedAlbums: savedAlbums
+		setUserData({
+			userProfile,
+			topTracks,
+			topArtists,
+			followedArtists,
+			savedTracks,
+			savedShows,
+			playlists,
+			recentlyPlayed,
+			// queue,
+			// currentlyPlayingTrack,
+			// availableDevices,
+			// playbackState,
+			savedEpisodes,
+			savedAudiobooks,
+			savedAlbums
 		});
 	} catch (error) {
 		console.error('Failed to load Spotify data:', error);

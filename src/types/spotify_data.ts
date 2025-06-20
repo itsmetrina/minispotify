@@ -28,6 +28,12 @@ export interface Track {
 export interface Artist {
     id: string;
     name: string;
+    images: {
+        url: string;
+        height: number;
+        width: number;
+    }[];
+    popularity: number;
 }
 
 export interface TopTracks {

@@ -3,7 +3,6 @@ import { createJSONStorage } from "zustand/middleware";
 import { persist } from "zustand/middleware";
 import type { UserProfile, TopTracks, TopArtists, RecentlyPlayedTracks, FollowedArtists, SavedTracks, SavedShows, Playlists, Queue, CurrentlyPlayingTrack, Devices, PlaybackState, SavedEpisodes, SavedAudiobooks, SavedAlbums } from "../types/spotify_data";
 
-
 interface UserState {
     userProfile: UserProfile | null;
     topTracks: TopTracks | null;
@@ -20,6 +19,7 @@ interface UserState {
     savedEpisodes: SavedEpisodes | null;
     savedAudiobooks: SavedAudiobooks | null;
     savedAlbums: SavedAlbums | null;
+    
     lastFetchedAt: number | null;
     setUserData: (data: Partial<UserState>) => void;
     clearUserData: () => void;
@@ -43,6 +43,7 @@ export const useUserStore = create<UserState>()(
             savedEpisodes: null,
             savedAudiobooks: null,
             savedAlbums: null,
+            
             lastFetchedAt: null,
 
             setUserData: (data) =>

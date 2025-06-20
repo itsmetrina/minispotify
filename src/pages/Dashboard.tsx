@@ -1,19 +1,62 @@
-import TopTracks from "../blocks/TopTracks"
+import { ArtistCard } from "../blocks/ArtistCard"
+import { Grid } from "../blocks/Grid"
+import { PlaylistCard } from "../blocks/PlaylistCard"
+import { Section } from "../blocks/Section"
+import { TrackCard } from "../blocks/TrackCard"
+import { useUserStore } from "../store/useUserStore"
 
 const Dashboard = () => {
+    const {
+        // userProfile,
+        topTracks,
+        topArtists,
+        recentlyPlayed,
+        // currentlyPlaying,
+        playlists,
+    } = useUserStore();
     return (
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 p-2">
-            <div className="border border-green-400 rounded-lg p-4">
-                <TopTracks />
-            </div>
-            <div className="border border-green-400 rounded-lg p-4">Top Artists</div>
-            <div className="border border-green-400 rounded-lg p-4">Followings</div>
-            <div className="border border-green-400 rounded-lg p-4">Recently Played</div>
-            <div className="border border-green-400 rounded-lg p-4">1</div>
-            <div className="border border-green-400 rounded-lg p-4">1</div>
-            <div className="border border-green-400 rounded-lg p-4">1</div>
-            <div className="border border-green-400 rounded-lg p-4">1</div>
-            <div className="border border-green-400 rounded-lg p-4">1</div>
+        <div className="p-6 space-y-10">
+            {/* <Header user={userProfile} /> */}
+
+            {/* <Section title="Currently Playing">
+                {currentlyPlaying ? (
+                    <TrackCard track={currentlyPlaying.item} />
+                ) : (
+                    <p>Nothing playing right now.</p>
+                )}
+            </Section> */}
+
+            <Section title="Top 5 Tracks">
+                <Grid>
+                    {topTracks?.items.map((track) => (
+                        <TrackCard key={track.id} track={track} />
+                    ))}
+                </Grid>
+            </Section>
+
+            <Section title="Top 5 Artists">
+                <Grid>
+                    {topArtists?.items.map((artist) => (
+                        <ArtistCard key={artist.id} artist={artist} />
+                    ))}
+                </Grid>
+            </Section>
+
+            <Section title="Recently Played">
+                <Grid>
+                    {recentlyPlayed?.items.map((item) => (
+                        <TrackCard key={item.track.id} track={item.track} />
+                    ))}
+                </Grid>
+            </Section>
+
+            <Section title="Your Playlists">
+                <Grid>
+                    {playlists?.items.map((pl) => (
+                        <PlaylistCard key={pl.id} playlist={pl} />
+                    ))}
+                </Grid>
+            </Section>
         </div>
     )
 }
