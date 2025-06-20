@@ -18,11 +18,14 @@ export interface UserProfile {
 export interface Track {
     id: string;
     name: string;
-    artists: Artist[];
     album: Album;
-    duration_ms: number;
+    artists: Artist[];
+    external_urls: {
+        spotify: string;
+    };
     popularity: number;
     uri: string;
+    is_playable: boolean;
 }
 
 export interface Artist {

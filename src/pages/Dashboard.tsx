@@ -29,13 +29,13 @@ const Dashboard = () => {
 
             <Section title="Top 5 Tracks">
                 <Grid>
-                    {topTracks?.items.map((track) => (
+                    {topTracks?.map((track) => (
                         <TrackCard key={track.id} track={track} />
                     ))}
                 </Grid>
             </Section>
 
-            <Section title="Top 5 Artists">
+            {/* <Section title="Top 5 Artists">
                 <Grid>
                     {topArtists?.items.map((artist) => (
                         <ArtistCard key={artist.id} artist={artist} />
@@ -57,7 +57,7 @@ const Dashboard = () => {
                         <PlaylistCard key={pl.id} playlist={pl} />
                     ))}
                 </Grid>
-            </Section>
+            </Section> */}
         </div>
     )
 }

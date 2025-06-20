@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import { createJSONStorage } from "zustand/middleware";
 import { persist } from "zustand/middleware";
-import type { UserProfile, TopTracks, TopArtists, RecentlyPlayedTracks, FollowedArtists, SavedTracks, SavedShows, Playlists, Queue, CurrentlyPlayingTrack, Devices, PlaybackState, SavedEpisodes, SavedAudiobooks, SavedAlbums } from "../types/spotify_data";
+import type { UserProfile, TopArtists, RecentlyPlayedTracks, FollowedArtists, SavedTracks, SavedShows, Playlists, Queue, CurrentlyPlayingTrack, Devices, PlaybackState, SavedEpisodes, SavedAudiobooks, SavedAlbums, Track } from "../types/spotify_data";
 
 interface UserState {
     userProfile: UserProfile | null;
-    topTracks: TopTracks | null;
+    topTracks: Track[] | null;
     topArtists: TopArtists | null;
     followedArtists: FollowedArtists | null;
     savedTracks: SavedTracks | null;
