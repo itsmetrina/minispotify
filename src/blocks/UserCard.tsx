@@ -1,4 +1,5 @@
 import type { User } from '../types/spotify_data';
+import { logout } from '../utils/auth';
 import { avatarMap } from '../utils/avatarMap';
 
 export const UserCard = ({ user }: { user: User | null }) => {
@@ -31,7 +32,7 @@ export const UserCard = ({ user }: { user: User | null }) => {
                 <p>Country: {getCountryName(user.country)}</p>
                 <p>Subscription: {user.product}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-warning">Log out</button>
+                    <button className="btn btn-warning" onClick={logout}>Log out</button>
                 </div>
             </div>
         </div>
