@@ -25,8 +25,15 @@ export const UserCard = ({ user }: { user: User | null }) => {
                     alt={user.display_name + "'s avatar"}
                     width={300} height={300} />
             </figure>
-            <div className="card-body">
-                <h2 className="card-title">{user.display_name}</h2>
+            <div className="stats shadow">
+                <div className="stat">
+                    <div className="stat-title">{user.display_name}</div>
+                    <div className="stat-value">{user.followers.total}</div>
+                    <div className="stat-desc">Subscription: {user.product}</div>
+                </div>
+            </div>
+            {/* <div className="card-body">
+                <h2>{user.display_name}</h2>
                 <p>Email: {user.email}</p>
                 <p>Followers: {user.followers.total}</p>
                 <p>Country: {getCountryName(user.country)}</p>
@@ -34,7 +41,7 @@ export const UserCard = ({ user }: { user: User | null }) => {
                 <div className="card-actions justify-end">
                     <button className="btn btn-warning" onClick={logout}>Log out</button>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
