@@ -1,12 +1,12 @@
 import type { User } from '../types/spotify_data';
-import { logout } from '../utils/auth';
+// import { logout } from '../utils/auth';
 import { avatarMap } from '../utils/avatarMap';
 
 export const UserCard = ({ user }: { user: User | null }) => {
-    const getCountryName = (countryCode?: string) => {
-        if (!countryCode) return 'Unknown';
-        return new Intl.DisplayNames(['en'], { type: 'region' }).of(countryCode.toUpperCase()) || 'Unknown';
-    };
+    // const getCountryName = (countryCode?: string) => {
+    //     if (!countryCode) return 'Unknown';
+    //     return new Intl.DisplayNames(['en'], { type: 'region' }).of(countryCode.toUpperCase()) || 'Unknown';
+    // };
 
     const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
 
