@@ -17,37 +17,37 @@ const App = () => {
 	}, []);
 
 	return (
-		<Dashboard />
-		// <Routes>
-		// 	<Route path="/login" element={<Login />} />
+		// <Dashboard />
+		<Routes>
+			<Route path="/login" element={<Login />} />
 
-		// 	<Route path="/welcome" element={
-		// 		<SecureRoutes>
-		// 			<Welcome />
-		// 		</SecureRoutes>
-		// 	} />
-		// 	<Route path="/dashboard" element={
-		// 		<SecureRoutes>
-		// 			<Dashboard />
-		// 		</SecureRoutes>
-		// 	} />
-		// 	<Route path="/logout" element={
-		// 		<SecureRoutes>
-		// 			<Logout />
-		// 		</SecureRoutes>
-		// 	} />
-		// 	<Route path="/" element={
-		// 		isLoggedIn()
-		// 			? <Navigate to="/welcome" />
-		// 			: <Navigate to="/login" />
-		// 	} />
+			<Route path="/welcome" element={
+				<SecureRoutes>
+					<Welcome />
+				</SecureRoutes>
+			} />
+			<Route path="/dashboard" element={
+				<SecureRoutes>
+					<Dashboard />
+				</SecureRoutes>
+			} />
+			<Route path="/logout" element={
+				<SecureRoutes>
+					<Logout />
+				</SecureRoutes>
+			} />
+			<Route path="/" element={
+				isLoggedIn()
+					? <Navigate to="/welcome" />
+					: <Navigate to="/login" />
+			} />
 
-		// 	<Route path="*" element={
-		// 		isLoggedIn()
-		// 			? <Navigate to="/welcome" />
-		// 			: <Navigate to="/login" />
-		// 	} />
-		// </Routes>
+			<Route path="*" element={
+				isLoggedIn()
+					? <Navigate to="/welcome" />
+					: <Navigate to="/login" />
+			} />
+		</Routes>
 	)
 }
 
