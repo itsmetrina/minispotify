@@ -2,7 +2,7 @@ import type { Playlist } from "../types/spotify_data"
 
 export const PlaylistCard = ({ playlist }: { playlist: Playlist }) => {
     return (
-        <div tabIndex={0} className="collapse collapse-arrow bg-base-100 border-base-300 border">
+        <div tabIndex={0} className="collapse collapse-arrow bg-base-100">
             <div className="collapse-title font-semibold">{playlist.name}</div>
             <div className="collapse-content text-sm">
                 <li className="list-row">
