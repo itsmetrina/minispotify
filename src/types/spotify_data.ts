@@ -1,4 +1,4 @@
-export interface UserProfile {
+export interface User {
     id: string;
     display_name: string;
     email: string;
@@ -18,6 +18,7 @@ export interface UserProfile {
 export interface Track {
     id: string;
     name: string;
+    track_number: number;
     album: Album;
     artists: Artist[];
     external_urls: {
@@ -37,60 +38,16 @@ export interface Artist {
         width: number;
     }[];
     popularity: number;
-}
-
-export interface TopTracks {
-    items: Track[];
-}
-
-export interface TopArtists {
-    items: Artist[];
-}
-
-export interface FollowedArtists {
-    artists: {
-        items: Artist[];
-        next: string | null;
+    followers: {
         total: number;
-    };
-}
-
-export interface SavedTrack {
-    added_at: string;
-    track: Track;
-}
-
-export interface SavedTracks {
-    items: SavedTrack[];
-    total: number;
-    next: string | null;
-    href: string;
-}
-
-export interface Show {
-    id: string;
-    name: string;
-    publisher: string;
-    description: string;
-    images: {
-        url: string;
-        height: number;
-        width: number;
-    }[];
-}
-
-export interface SavedShows {
-    items: {
-        added_at: string;
-        show: Show;
-    }[];
-    total: number;
+    }
 }
 
 export interface Playlist {
     id: string;
     name: string;
     description: string;
+    public: boolean;
     owner: {
         id: string;
         display_name: string;
@@ -105,98 +62,13 @@ export interface Playlist {
     };
 }
 
-export interface Playlists {
-    items: Playlist[];
-    total: number;
-    next: string | null;
-}
-
-export interface RecentlyPlayedTrack {
-    track: Track;
-    played_at: string;
-}
-
-export interface RecentlyPlayedTracks {
-    items: RecentlyPlayedTrack[];
-}
-
-export interface Queue {
-    currently_playing: Track | null;
-    queue: Track[];
-}
-
-export interface CurrentlyPlayingTrack {
-    is_playing: boolean;
-    progress_ms: number;
-    item: Track;
-}
-
-export interface Device {
-    id: string;
-    name: string;
-    type: string;
-    is_active: boolean;
-    volume_percent: number;
-}
-
-export interface Devices {
-    devices: Device[];
-}
-
-export interface PlaybackState {
-    is_playing: boolean;
-    progress_ms: number;
-    item: Track;
-}
-
-export interface SavedEpisode {
-    added_at: string;
-    episode: {
-        id: string;
-        name: string;
-        description: string;
-        audio_url: string;
-        show: {
-            id: string;
-            name: string;
-            publisher: string;
-        };
-    };
-}
-
-export interface SavedEpisodes {
-    items: SavedEpisode[];
-    total: number;
-}
-
-export interface SavedAudiobook {
-    id: string;
-    name: string;
-    author: string;
-    description: string;
-}
-
-export interface SavedAudiobooks {
-    items: SavedAudiobook[];
-    total: number;
-}
-
 export interface Album {
     id: string;
     name: string;
+    is_playable: boolean;
     images: {
         url: string;
         height: number;
         width: number;
     }[];
-}
-
-export interface SavedAlbum {
-    added_at: string;
-    album: Album;
-}
-
-export interface SavedAlbums {
-    items: SavedAlbum[];
-    total: number;
 }

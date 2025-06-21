@@ -14,7 +14,8 @@ const scope = [
     "user-read-currently-playing",
     "user-read-playback-state",
     "user-library-read",
-    "user-read-playback-position"
+    "user-read-playback-position",
+    "user-modify-playback-state"
 ];
 const authUrl = new URL("https://accounts.spotify.com/authorize");
 

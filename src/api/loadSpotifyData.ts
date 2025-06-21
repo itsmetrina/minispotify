@@ -1,5 +1,5 @@
-import { getFollowedArtists, getSavedTracks, getTopArtists, getTopTracks, getProfile, getSavedShows, getPlaylists, getRecentlyPlayed, getSavedAlbums, getSavedAudiobooks, getSavedEpisodes } from "./spotifyAPI";
 import { useUserStore } from "../store/useUserStore";
+import { getProfile, getTopTracks, getTopArtists, getPlaylists } from "./spotifyAPI";
 
 const isStale = (timestamp: number | null, ttlMinutes = 60) => {
 	if (!timestamp) return true;
@@ -15,52 +15,19 @@ export const loadUserSpotifyData = async () => {
 			userProfile,
 			topTracks,
 			topArtists,
-			followedArtists,
-			savedTracks,
-			savedShows,
-			playlists,
-			recentlyPlayed,
-			// queue,
-			// currentlyPlayingTrack,
-			// availableDevices,
-			// playbackState,
-			savedEpisodes,
-			savedAudiobooks,
-			savedAlbums
+			playlists
 		] = await Promise.all([
 			getProfile(),
 			getTopTracks(5),
 			getTopArtists(5),
-			getFollowedArtists(10),
-			getSavedTracks(10),
-			getSavedShows(10),
-			getPlaylists(10),
-			getRecentlyPlayed(10),
-			// getQueue(),
-			// getCurrentlyPlaying(),
-			// getAvailableDevices(),
-			// getPlaybackState(),
-			getSavedEpisodes(10),
-			getSavedAudiobooks(10),
-			getSavedAlbums(10)
+			getPlaylists(10)
 		]);
 
 		setUserData({
 			userProfile,
 			topTracks,
 			topArtists,
-			followedArtists,
-			savedTracks,
-			savedShows,
-			playlists,
-			recentlyPlayed,
-			// queue,
-			// currentlyPlayingTrack,
-			// availableDevices,
-			// playbackState,
-			savedEpisodes,
-			savedAudiobooks,
-			savedAlbums
+			playlists
 		});
 	} catch (error) {
 		console.error('Failed to load Spotify data:', error);

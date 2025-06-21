@@ -1,11 +1,22 @@
-import type { Track } from "../types/spotify_data"
+import { playTrack } from "../api/spotifyAPI"
+import type { Track, User } from "../types/spotify_data"
 
-export const TrackCard = ({ track }: { track: Track }) => {
+export const TrackCard = ({ user, track }: { user: User | null; track: Track }) => {
 	return (
-		<div className="p-4 bg-neutral-800 rounded-xl shadow text-white space-y-2">
-			<img className="rounded" src={track.album.images[0]?.url} alt={track.name} />
-			<div className="font-bold">{track.name}</div>
-			<div className="text-sm text-gray-300">{track.artists.map((a) => a.name).join(", ")}</div>
-		</div>
+		<li className="list-row">
+			<div className="text-4xl font-thin opacity-30 tabular-nums">{track.track_number}</div>
+			<div>
+				<img className="size-10 rounded-box" src={track.album.images[0]?.url} alt={track.name} />
+			</div>
+			<div className="list-col-grow">
+				<div>{track.artists.map((a) => a.name).join(", ")}</div>
+				<div className="text-xs uppercase font-semibold opacity-60">{track.name}</div>
+			</div>
+			{user?.product?.includes('premium') && <>
+				<button className="btn btn-square btn-ghost" onClick={() => playTrack(track.uri)}>
+					<svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+				</button>
+			</>}
+		</li>
 	)
 }
