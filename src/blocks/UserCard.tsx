@@ -1,12 +1,12 @@
 import type { User } from '../types/spotify_data';
-// import { logout } from '../utils/auth';
+import { logout } from '../utils/auth';
 import { avatarMap } from '../utils/avatarMap';
 
 export const UserCard = ({ user }: { user: User | null }) => {
-    // const getCountryName = (countryCode?: string) => {
-    //     if (!countryCode) return 'Unknown';
-    //     return new Intl.DisplayNames(['en'], { type: 'region' }).of(countryCode.toUpperCase()) || 'Unknown';
-    // };
+    const getCountryName = (countryCode?: string) => {
+        if (!countryCode) return 'Unknown';
+        return new Intl.DisplayNames(['en'], { type: 'region' }).of(countryCode.toUpperCase()) || 'Unknown';
+    };
 
     const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
 
@@ -25,11 +25,14 @@ export const UserCard = ({ user }: { user: User | null }) => {
                     alt={user.display_name + "'s avatar"}
                     width={300} height={300} />
             </figure>
-            <div className="stats shadow">
-                <div className="stat">
-                    <div className="stat-title">{user.display_name}</div>
-                    <div className="stat-value">{user.followers.total}</div>
-                    <div className="stat-desc">Subscription: {user.product}</div>
+            <div className="stat block">
+                <div className="stat-title">Followers: {user.followers.total}</div>
+                <div className="stat-value">{user.display_name}</div>
+                <div className="stat-desc">Email: {user.email}</div>
+                <div className="stat-desc">Subscription: {user.product}</div>
+                <div className="stat-desc">Country: {getCountryName(user.country)}</div>
+                <div className="card-actions justify-end">
+                    <button className="btn btn-warning" onClick={logout}>Log out</button>
                 </div>
             </div>
             {/* <div className="card-body">
