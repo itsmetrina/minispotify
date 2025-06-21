@@ -7,7 +7,7 @@ import { getProfile, getTopTracks, getTopArtists, getPlaylists } from "./spotify
 // };
 
 export const loadUserSpotifyData = async () => {
-	const { setUserData, lastFetchedAt } = useUserStore.getState();
+	const { setUserData } = useUserStore.getState();
 	// if (!forceRefresh && !isStale(lastFetchedAt, 1)) return true;
 
 	try {
