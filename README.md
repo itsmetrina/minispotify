@@ -1,7 +1,3 @@
-Here’s the updated `README.md` with the latest additions, including **DaisyUI**, enhanced clarity, and fresh notes from recent progress:
-
----
-
 # 🎧 MiniSpotify
 
 > A React + TypeScript project inspired by Spotify’s UI/UX and architecture.
