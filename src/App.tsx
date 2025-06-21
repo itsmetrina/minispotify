@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { loadUserSpotifyData } from "./api/loadSpotifyData";
 import Logout from "./blocks/Logout";
-import { UserCard } from "./blocks/UserCard";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
@@ -21,11 +20,6 @@ const App = () => {
 		<Routes>
 			<Route path="/login" element={<Login />} />
 
-			<Route path="/user" element={
-				<SecureRoutes>
-					<UserCard user={null} />
-				</SecureRoutes>
-			} />
 			<Route path="/welcome" element={
 				<SecureRoutes>
 					<Welcome />

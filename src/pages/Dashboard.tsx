@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArtistCard } from "../blocks/ArtistCard"
 import { PlaylistCard } from "../blocks/PlaylistCard";
 import { TrackCard } from "../blocks/TrackCard"
@@ -11,6 +12,9 @@ const Dashboard = () => {
         topArtists,
         playlists
     } = useUserStore();
+    useEffect(() => {
+        console.log("I'm here!!");
+    })
 
     return (
         <div className="p-6 space-y-10">
