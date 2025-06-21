@@ -14,6 +14,16 @@ const App = () => {
 			loadUserSpotifyData();
 		}
 	}, []);
+	useEffect(() => {
+		const interval = setInterval(() => {
+			if (isLoggedIn()) {
+				loadUserSpotifyData(true); // force = true for testing
+			}
+		}, 60_000); // every 60 seconds
+
+		return () => clearInterval(interval);
+	}, []);
+
 
 	return (
 		// <Dashboard />

@@ -2,7 +2,7 @@ import type { User } from '../types/spotify_data';
 import { logout } from '../utils/auth';
 import { avatarMap } from '../utils/avatarMap';
 
-export const UserCard = ({ user }: { user: User | null }) => {
+export const UserCard = ({ user, lastFetched }: { user: User | null; lastFetched: any }) => {
     const getCountryName = (countryCode?: string) => {
         if (!countryCode) return 'Unknown';
         return new Intl.DisplayNames(['en'], { type: 'region' }).of(countryCode.toUpperCase()) || 'Unknown';
@@ -31,6 +31,7 @@ export const UserCard = ({ user }: { user: User | null }) => {
                 <div className="stat-desc">Email: {user.email}</div>
                 <div className="stat-desc">Subscription: {user.product}</div>
                 <div className="stat-desc">Country: {getCountryName(user.country)}</div>
+                <h2>Data Last Fetched At: {lastFetched.toLocaleString()}</h2>
                 <div className="card-actions justify-end">
                     <button className="btn btn-warning" onClick={logout}>Log out</button>
                 </div>

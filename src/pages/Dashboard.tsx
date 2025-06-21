@@ -10,7 +10,8 @@ const Dashboard = () => {
         userProfile,
         topTracks,
         topArtists,
-        playlists
+        playlists,
+        lastFetchedAt
     } = useUserStore();
     useEffect(() => {
         console.log(userProfile,
@@ -21,7 +22,7 @@ const Dashboard = () => {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 p-6 space-y-10">
-            <UserCard user={userProfile} />
+            <UserCard user={userProfile} lastFetched={lastFetchedAt} />
 
             <ul className="list bg-base-100 rounded-box shadow-md">
                 <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Top 5 Track</li>
