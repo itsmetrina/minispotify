@@ -1,9 +1,9 @@
 import { useUserStore } from "../store/useUserStore";
 import { getProfile, getTopTracks, getTopArtists, getPlaylists } from "./spotifyAPI";
 
-const isStale = (timestamp: number | null, ttlMinutes = 60) => {
+const isStale = (timestamp: number | null, ttlMinutes = 10) => {
 	if (!timestamp) return true;
-	return Date.now() - timestamp > ttlMinutes * 60 * 1000;
+	return Date.now() - timestamp > ttlMinutes * 1000;
 };
 
 export const loadUserSpotifyData = async () => {
