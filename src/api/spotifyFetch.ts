@@ -8,7 +8,7 @@ export const spotifyFetch = async (
 ) => {
     const spotifyApi = SPOTIFY_BASE_URL;
     const token = useAuthStore.getState().accessToken;
-    // const token = 'BQDy022d8W0jxD6vVD4LUQiAQvJ0qBh5nB6RaJZSN8dnagh_wziEtaePr-i0Aw4IWf-WUmTx2riAKzM2rxSB6ZREg1O3V8EoPxMGeQ_5aAELaPTv647vDq-9XfYV5MSNQNXDQMTo-YvZRibe36_SqZapzJVeTYzM9ulpliP-zWMSaAbA7FlJ0aB4DvG07MOJQZnYvBk4_KD1V-kg3NEQHkgSCuYSVtAxnCbq9KJhE8AOqCuwmMFtShFNDJTjuAKFq63iFVm_0VvXAVB5h6vlgCXzNccZjAT9Se8xNW8lRMLsEep4zCNWwOcQG9QV3h4-';
+    // const token = 'BQAjO3tD5iCZLE5SRcOYR00Qr6SfMocQih1Pv4q-q2EggsvWNJRNhuoEn_8CGQcp2pTtylhDA1WUAe7RynzOdUZ40pZOqJC68Z5uU2aOPKTtYDZb_qnt9skP-gZaYpU9F5SnNGgoQi8H4r6S8IpbCEsv2T0EXHME3Vvsshj0CoWIw9M39X5wEFGlNhICnOk-Ks0jfiA3mjY4AA7MMA5JMjkmCmZOdfCtDrcsjHWVcGfKBSoyPjvpjsuwEyfsThjWrsoC_4MF6Q7fFwIOovKzBDwzBVusKkgun_qSZuaKu7lzR_LRvipYIofPuJJ0OVMr';
 
     if(!token) throw new Error("No access token found. Please authenticate first.");
     const options: RequestInit = {

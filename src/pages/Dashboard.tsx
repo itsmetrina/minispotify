@@ -13,11 +13,14 @@ const Dashboard = () => {
         playlists
     } = useUserStore();
     useEffect(() => {
-        console.log("I'm here!!");
+        console.log(userProfile,
+            topTracks,
+            topArtists,
+            playlists);
     })
 
     return (
-        <div className="p-6 space-y-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 p-6 space-y-10">
             <UserCard user={userProfile} />
 
             <ul className="list bg-base-100 rounded-box shadow-md">
