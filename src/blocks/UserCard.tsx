@@ -3,59 +3,69 @@ import { logout } from '../utils/auth';
 import avatar1 from "./../assets/avatars/avatar-1.svg";
 
 export const UserCard = ({ user, lastFetched }: { user: User | null; lastFetched: any }) => {
-    const getCountryName = (countryCode?: string) => {
-        if (!countryCode) return 'Unknown';
-        return new Intl.DisplayNames(['en'], { type: 'region' }).of(countryCode.toUpperCase()) || 'Unknown';
+    if (!user) return <div>Loading user...</div>;
+    
+    const displayFigure = () =>
+        user.images?.[0]?.url || avatar1;
+
+    const getCountryName = (code: string) =>
+        new Intl.DisplayNames(["en"], { type: "region" }).of(code) || code;
+
+    const formatDate = (timestamp: number) => {
+        const now = Date.now();
+        const diff = now - timestamp;
+        const minutes = Math.floor(diff / 60000);
+        const hours = Math.floor(minutes / 60);
+
+        const relative =
+            minutes < 1
+                ? "Just now"
+                : minutes < 60
+                    ? `${minutes} min${minutes > 1 ? "s" : ""} ago`
+                    : `${hours} hour${hours > 1 ? "s" : ""} ago`;
+
+        const full = new Intl.DateTimeFormat("en-US", {
+            dateStyle: "medium",
+            timeStyle: "short",
+        }).format(timestamp);
+
+        return { relative, full };
     };
 
-    // const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
-
-    if (!user) return <div>Loading user...</div>;
-
-    const displatFigure = () => {
-        if (user?.images?.length > 0) {
-            return user?.images?.[0]?.url;
-        } else return avatar1;
-    }
+    const { relative, full } = formatDate(lastFetched);
     return (
-        // <div className="card card-side bg-base-100 shadow-sm">
-        //     <figure>
-        //         <img
-        //             src={displatFigure()}
-        //             alt={user.display_name + "'s avatar"}
-        //             width={300} height={300} />
-        //     </figure>
-        //     <div className="stat block">
-        //         <div className="stat-title">Followers: {user.followers.total}</div>
-        //         <div className="stat-value">{user.display_name}</div>
-        //         <div className="stat-desc">Email: {user.email}</div>
-        //         <div className="stat-desc">Subscription: {user.product}</div>
-        //         <div className="stat-desc">Country: {getCountryName(user.country)}</div>
-        //         <h2>Data Last Fetched At: {lastFetched.toLocaleString()}</h2>
-        //         <div className="card-actions justify-end">
-        //             <button className="btn btn-warning" onClick={logout}>Log out</button>
-        //         </div>
-        //     </div>
-        // </div>
-        <div className="card card-side bg-base-100 shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
-            <figure className="flex-shrink-0">
+        <div className="bg-gradient-to-br from-base-200 to-base-100 p-6 rounded-2xl shadow-lg flex flex-col md:flex-row items-center gap-6 hover:shadow-xl transition duration-300">
+            <div className="relative">
                 <img
-                    src={displatFigure()}
+                    src={displayFigure()}
                     alt={`${user.display_name}'s avatar`}
-                    className="w-full h-auto md:w-48 object-cover"
+                    className="rounded-full w-32 h-32 object-cover shadow-md border-4 border-base-300"
                 />
-            </figure>
-            <div className="p-4 flex flex-col justify-between space-y-2">
-                <div>
-                    <h2 className="text-xl font-bold">{user.display_name}</h2>
-                    <p className="text-sm text-gray-500">Followers: {user.followers.total}</p>
-                    <p className="text-sm text-gray-500">Email: {user.email}</p>
-                    <p className="text-sm text-gray-500">Subscription: {user.product}</p>
-                    <p className="text-sm text-gray-500">Country: {getCountryName(user.country)}</p>
+                <div className="absolute bottom-0 right-0 badge badge-success text-xs px-2">
+                    {user.product}
                 </div>
-                <div className="text-xs opacity-60">Data Last Fetched: {lastFetched.toLocaleString()}</div>
-                <div className="pt-2">
-                    <button className="btn btn-warning w-full md:w-auto" onClick={logout}>Log out</button>
+            </div>
+
+            <div className="flex-1 w-full">
+                <h2 className="text-2xl font-bold">{user.display_name}</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-sm mt-2">
+                    <p className="text-gray-500">👥 Followers:</p>
+                    <p className="col-span-2">{user.followers.total.toLocaleString()}</p>
+
+                    <p className="text-gray-500">📧 Email:</p>
+                    <p className="col-span-2 break-all">{user.email}</p>
+
+                    <p className="text-gray-500">🌍 Country:</p>
+                    <p className="col-span-2">{getCountryName(user.country)}</p>
+                </div>
+
+                <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
+                    <span>⏱ Last updated {relative}</span>
+                    <span className="hidden sm:inline">— {full}</span>
+                </div>
+
+                <div className="mt-4 text-right">
+                    <button className="btn btn-warning btn-sm shadow-sm" onClick={logout}>Log out</button>
                 </div>
             </div>
         </div>
