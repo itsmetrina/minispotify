@@ -1,6 +1,6 @@
 import type { User } from '../types/spotify_data';
 import { logout } from '../utils/auth';
-import avatar1 from "./../assets/avatars/avatar-1.svg";
+import avatar1 from "avatars/avatar-1.svg";
 
 export const UserCard = ({ user, lastFetched }: { user: User | null; lastFetched: any }) => {
     if (!user) return <div>Loading user...</div>;
