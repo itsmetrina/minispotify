@@ -1,6 +1,6 @@
 import type { User } from '../types/spotify_data';
 import { logout } from '../utils/auth';
-import { avatarMap } from '../utils/avatarMap';
+import avatar1 from "./../assets/avatars/avatar-1.svg";
 
 export const UserCard = ({ user, lastFetched }: { user: User | null; lastFetched: any }) => {
     const getCountryName = (countryCode?: string) => {
@@ -8,14 +8,14 @@ export const UserCard = ({ user, lastFetched }: { user: User | null; lastFetched
         return new Intl.DisplayNames(['en'], { type: 'region' }).of(countryCode.toUpperCase()) || 'Unknown';
     };
 
-    const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
+    // const getRandomAvatarNumber = () => Math.floor(Math.random() * 5) + 1;
 
     if (!user) return <div>Loading user...</div>;
 
     const displatFigure = () => {
         if (user?.images?.length > 0) {
             return user?.images?.[0]?.url;
-        } else return avatarMap[getRandomAvatarNumber()];
+        } else return avatar1;
     }
     return (
         // <div className="card card-side bg-base-100 shadow-sm">
