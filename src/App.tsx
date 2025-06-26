@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { loadUserSpotifyData } from "./api/loadSpotifyData";
 import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
 import { isLoggedIn } from "./utils/auth";
@@ -16,10 +17,9 @@ const App = () => {
 	}, []);
 
 	return (
-		// <Dashboard />
 		<Routes>
+			<Route path="/" element={<Home />} />
 			<Route path="/login" element={<Login />} />
-
 			<Route path="/welcome" element={
 				<SecureRoutes>
 					<Welcome />
@@ -30,17 +30,7 @@ const App = () => {
 					<Dashboard />
 				</SecureRoutes>
 			} />
-			<Route path="/" element={
-				isLoggedIn()
-					? <Navigate to="/welcome" />
-					: <Navigate to="/login" />
-			} />
-
-			<Route path="*" element={
-				isLoggedIn()
-					? <Navigate to="/welcome" />
-					: <Navigate to="/login" />
-			} />
+			<Route path="*" element={<Navigate to="/" />} />
 		</Routes>
 	)
 }
