@@ -7,8 +7,8 @@ export const TrackCard = ({ user, track }: { user: User | null; track: Track }) 
 			<div className="text-lg font-bold text-[#1DB954] w-6">{track.track_number}</div>
 			<img src={track.album.images[0]?.url} alt={track.name} className="size-10 rounded-md shadow-sm" />
 			<div className="flex-1 min-w-0">
-				<p className="truncate font-semibold text-white">{track.artists.map((a) => a.name).join(", ")}</p>
-				<p className="text-xs uppercase opacity-60 text-[#1DB954]">{track.name}</p>
+				<p className="truncate font-semibold text-white">{track.name}</p>
+				<p className="text-xs uppercase opacity-60 text-[#1DB954]">{track.artists.map((a) => a.name).join(", ")}</p>
 			</div>
 			{user?.product?.includes('premium') && (
 				<button className="btn btn-square btn-ghost hover:text-[#1DB954]" onClick={() => playTrack(track.uri)} aria-label="Play track">
