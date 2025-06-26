@@ -99,7 +99,7 @@ export const UserCard = ({ user, lastFetched }: { user: User | null; lastFetched
                 </div>
 
                 <div className="mt-4 text-right">
-                    <button className="btn btn-success btn-sm shadow-md hover:brightness-110">Log out</button>
+                    <button className="btn btn-success btn-sm shadow-md hover:brightness-110" onClick={logout}>Log out</button>
                 </div>
             </div>
         </div>
