@@ -23,7 +23,7 @@ const Dashboard = () => {
     return (
         <div className="grid grid-cols-1 gap-8 p-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <div className="col-span-full">
-                <UserCard user={userProfile} lastFetched={lastFetchedAt} />
+                <UserCard user={userProfile} />
             </div>
 
             <div className="bg-base-100 rounded-xl shadow-lg p-4 space-y-3">
