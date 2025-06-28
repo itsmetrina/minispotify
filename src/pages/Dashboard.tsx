@@ -11,18 +11,19 @@ const Dashboard = () => {
         topTracks,
         topArtists,
         playlists,
+        lastFetchedAt
     } = useUserStore();
 
     return (
         <div className="grid grid-cols-1 gap-8 p-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <div className="col-span-full">
-                <UserCard user={userProfile} />
+                <UserCard user={userProfile} lastFetched={lastFetchedAt} />
             </div>
 
             <div className="bg-base-100 rounded-xl shadow-lg p-4 space-y-3">
                 <h3 className="text-sm font-semibold uppercase opacity-60">Top Tracks</h3>
                 <ul className="space-y-2">
-                    {([]).length > 0 ? (topTracks?.map((track) => (
+                    {(topTracks ?? []).length > 0 ? (topTracks?.map((track) => (
                         <TrackCard key={track.id} user={userProfile} track={track} />
                     ))) : (
                         <EmptyState message="No top tracks found." />
