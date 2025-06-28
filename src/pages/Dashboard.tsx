@@ -11,7 +11,6 @@ const Dashboard = () => {
         topTracks,
         topArtists,
         playlists,
-        lastFetchedAt
     } = useUserStore();
 
     return (
