@@ -40,11 +40,7 @@ This is **not a commercial Spotify clone**, but a learning-oriented project desi
 | ✅ Responsive grid layout           | Done ✅      |
 | ✅ State persistence via Zustand    | Done ✅      |
 | ✅ DaisyUI components for UI polish | Done ✅      |
-| ⏳ Playlist builder (drag/drop)     | WIP 🔧      |
-| ⏳ Playback bar + visualizer        | Coming soon |
-| ⏳ Save playlist locally            | Planned     |
-| ⏳ Dark/light mode toggle (DaisyUI) | Planned     |
-| ⏳ Deployment (Netlify)             | Soon 🚀     |
+| ⏳ Deployment (Netlify)             | Done ✅     |
 
 ---
 
