@@ -37,7 +37,7 @@ export const getDevices = async () => {
         `me/player/devices`,
         "GET"
     );
-    return res.items;
+    return res.devices;
 };
 
 export const playTrack = async (trackUri: string, deviceId?: string) => {
