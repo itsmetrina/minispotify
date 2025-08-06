@@ -69,7 +69,7 @@ Customization coming soon via `tailwind.config.js`.
 
 ## 👀 Screenshots
 
-[D:\minispotify\src\assets\screenshots\s1.png](D:\minispotify\src\assets\screenshots\s1.png)
+![s1.png](src/assets/screenshots/s1.png)
 
 ---
 
