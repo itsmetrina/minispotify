@@ -51,7 +51,7 @@ export const playTrack = async (trackUri: string, deviceId?: string) => {
 	}
 };
 
-export const pausePlayback = async () => {
+export const pauseTrack = async () => {
     try {
         await spotifyFetch("me/player/pause", "PUT");
         console.log("Playback paused");

@@ -29,5 +29,14 @@ export const spotifyFetch = async (
         throw new Error(`Spotify API Error: ${res.status} - ${errorText}`);
     }
 
-    return await res.json();
+    if (res.status === 204 || res.headers.get("Content-Length") === "0") {
+		return null;
+	}
+
+    try {
+		return await res.json();
+	} catch (err) {
+		console.warn("Response body is not valid JSON:", err);
+		return null;
+	}
 }

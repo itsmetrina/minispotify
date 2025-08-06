@@ -1,4 +1,4 @@
-import { pausePlayback, playTrack } from "../api/spotifyAPI"
+import { pauseTrack, playTrack } from "../api/spotifyAPI"
 import type { Device, Track, User } from "../types/spotify_data"
 
 type TrackProps = {
@@ -15,15 +15,6 @@ export const TrackCard = ({ user, track, devices, currentTrackUri, isPlaying, se
 	const activeDevice = devices?.find((d) => d.is_active && !d.is_restricted);
 	const thisTrackIsPlaying = isPlaying && currentTrackUri === track.uri;
 
-	// const handlePlay = () => {
-	// 	if (!user?.product?.includes('premium')) return;
-	// 	if (!activeDevice) {
-	// 		alert("No active Spotify device found. Please open Spotify on your phone or computer.");
-	// 		return;
-	// 	}
-	// 	playTrack(track.uri, activeDevice.id);
-	// };
-
 	const togglePlayPause = async () => {
 		if (!user?.product?.includes("premium")) return;
 		if (!activeDevice) {
@@ -32,7 +23,7 @@ export const TrackCard = ({ user, track, devices, currentTrackUri, isPlaying, se
 		}
 
 		if (thisTrackIsPlaying) {
-			await pausePlayback();
+			await pauseTrack();
 			setIsPlaying(false);
 		} else {
 			await playTrack(track.uri, activeDevice.id);
@@ -49,18 +40,6 @@ export const TrackCard = ({ user, track, devices, currentTrackUri, isPlaying, se
 				<p className="truncate font-semibold text-white">{track.name}</p>
 				<p className="text-xs uppercase opacity-60 text-[#1DB954]">{track.artists.map((a) => a.name).join(", ")}</p>
 			</div>
-			<>{console.log(devices, track, 'devices, track')}</>
-			{/* {user?.product?.includes("premium") && (
-				<button
-					className="btn btn-square btn-ghost hover:text-[#1DB954]"
-					onClick={handlePlay}
-					aria-label="Play track"
-				>
-					<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M6 3L20 12 6 21V3z" />
-					</svg>
-				</button>
-			)} */}
 			{user?.product?.includes("premium") && (
 				<button
 					className="btn btn-square btn-ghost hover:text-[#1DB954]"
