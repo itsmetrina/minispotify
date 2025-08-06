@@ -11,7 +11,6 @@ export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: 
 		const fetchDeviceId = async () => {
 			try {
 				const res = await getDeviceId();
-				console.log(res, 'res');
 				setDeviceId(res.devices[0].id);
 			} catch (err) {
 				console.error("Error fetching devices:", err);
