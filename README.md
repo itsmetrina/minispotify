@@ -70,6 +70,10 @@ Customization coming soon via `tailwind.config.js`.
 ## 👀 Screenshots
 
 ![s1.png](src/assets/screenshots/s1.png)
+![s2.png](src/assets/screenshots/s2.png)
+![s3.png](src/assets/screenshots/s3.png)
+![s4.png](src/assets/screenshots/s4.png)
+![s5.png](src/assets/screenshots/s5.png)
 
 ---
 
