@@ -4,6 +4,7 @@ import { TrackCard } from "../blocks/TrackCard"
 import { UserCard } from "../blocks/UserCard";
 import { useUserStore } from "../store/useUserStore"
 import EmptyState from "../blocks/EmptyState";
+import { useState } from "react";
 
 const Dashboard = () => {
     const {
@@ -15,6 +16,9 @@ const Dashboard = () => {
         lastFetchedAt
     } = useUserStore();
 
+    const [currentTrackUri, setCurrentTrackUri] = useState<string | null>(null);
+    const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
     return (
         <div className="grid grid-cols-1 gap-8 p-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <div className="col-span-full">
@@ -25,7 +29,15 @@ const Dashboard = () => {
                 <h3 className="text-sm font-semibold uppercase opacity-60">Top Tracks</h3>
                 <ul className="space-y-2">
                     {(topTracks ?? []).length > 0 ? (topTracks?.map((track) => (
-                        <TrackCard key={track.id} user={userProfile} track={track} devices={devices} />
+                        <TrackCard 
+                            key={track.id} 
+                            user={userProfile} 
+                            track={track} 
+                            devices={devices} 
+                            currentTrackUri={currentTrackUri}
+                            isPlaying={isPlaying}
+                            setCurrentTrackUri={setCurrentTrackUri}
+                            setIsPlaying={setIsPlaying} />
                     ))) : (
                         <EmptyState message="No top tracks found." />
                     )}
