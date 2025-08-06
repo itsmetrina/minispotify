@@ -10,7 +10,9 @@ export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: 
 		const fetchDeviceId = async () => {
 			try {
 				const res = await getDeviceId();
-				setDeviceId(res.devices[0].id);
+				if (res?.devices.length > 0) {
+					setDeviceId(res?.devices[0]?.id);
+				}
 			} catch (err) {
 				console.error("Error fetching devices:", err);
 			}
@@ -34,7 +36,7 @@ export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: 
 			setCurrentTrackUri(track.uri);
 		}
 	};
-	
+
 	return (
 		<li className="flex items-center gap-4 p-3 hover:bg-[#1db9540d] rounded transition-all">
 			<div className="text-lg font-bold text-[#1DB954] w-6">{track.track_number}</div>
