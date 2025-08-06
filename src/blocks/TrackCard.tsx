@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getDeviceId, pausePlayback, playTrack, transferPlayback } from "../api/spotifyAPI"
-import type { Track, User } from "../types/spotify_data"
-import { spotifyFetch } from "../api/spotifyFetch";
+import type { Track, User } from "../types/spotify_data";
 
 export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: { user: User | null; track: Track; currentTrackUri: string | null; setCurrentTrackUri: (uri: string | null) => void; }) => {
 	const [deviceId, setDeviceId] = useState<string | null>(null);
