@@ -67,6 +67,12 @@ Customization coming soon via `tailwind.config.js`.
 
 ---
 
+## 👀 Screenshots
+
+[D:\minispotify\src\assets\screenshots\s1.png](D:\minispotify\src\assets\screenshots\s1.png)
+
+---
+
 ## 🛡️ Disclaimer
 
 This project uses the **Spotify Web API** strictly for **learning and personal portfolio purposes**.
