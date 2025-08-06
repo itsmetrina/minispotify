@@ -42,3 +42,12 @@ export const playTrack = async (trackUri: string) => {
         console.error("Failed to play track:", error);
     }
 };
+
+export const pausePlayback = async () => {
+    try {
+        await spotifyFetch("me/player/pause", "PUT");
+        console.log("Playback paused");
+    } catch (error) {
+        console.error("Failed to pause track:", error);
+    }
+};
