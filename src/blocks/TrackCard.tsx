@@ -12,13 +12,7 @@ export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: 
 			try {
 				const res = await getDeviceId();
 				console.log(res, 'res');
-				const activeDevice = res.devices?.find((d: any) => d.is_active && d.type !== "Unknown");
-
-				if (activeDevice) {
-					setDeviceId(activeDevice.id);
-				} else {
-					console.warn("No active Spotify device found.");
-				}
+				setDeviceId(res.devices[0].id);
 			} catch (err) {
 				console.error("Error fetching devices:", err);
 			}
