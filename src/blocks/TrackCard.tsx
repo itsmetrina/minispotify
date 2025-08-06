@@ -11,6 +11,7 @@ export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: 
 		const fetchDeviceId = async () => {
 			try {
 				const res = await spotifyFetch("me/player/devices", "GET");
+				console.log(res, 'res');
 				const activeDevice = res.devices?.find((d: any) => d.is_active && d.type !== "Unknown");
 
 				if (activeDevice) {
@@ -50,19 +51,6 @@ export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: 
 				<p className="truncate font-semibold text-white">{track.name}</p>
 				<p className="text-xs uppercase opacity-60 text-[#1DB954]">{track.artists.map((a) => a.name).join(", ")}</p>
 			</div>
-			{/* {user?.product?.includes('premium') && (
-				<button className="btn btn-square btn-ghost hover:text-[#1DB954]" onClick={togglePlayPause} aria-label={isPlaying ? "Pause track" : "Play track"}>
-					{isPlaying ? (
-						<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M6 4h4v16H6zm8 0h4v16h-4z" />
-						</svg>
-					) : (
-						<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M6 3L20 12 6 21V3z" />
-						</svg>
-					)}
-				</button>
-			)} */}
 			{user?.product?.includes('premium') && (
 				<button
 					className="btn btn-square btn-ghost hover:text-[#1DB954]"
