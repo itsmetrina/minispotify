@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { pausePlayback, playTrack, transferPlayback } from "../api/spotifyAPI"
+import { getDeviceId, pausePlayback, playTrack, transferPlayback } from "../api/spotifyAPI"
 import type { Track, User } from "../types/spotify_data"
 import { spotifyFetch } from "../api/spotifyFetch";
 
@@ -10,7 +10,7 @@ export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: 
 	useEffect(() => {
 		const fetchDeviceId = async () => {
 			try {
-				const res = await spotifyFetch("me/player/devices", "GET");
+				const res = await getDeviceId();
 				console.log(res, 'res');
 				const activeDevice = res.devices?.find((d: any) => d.is_active && d.type !== "Unknown");
 
