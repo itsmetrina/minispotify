@@ -40,7 +40,7 @@ export const TrackCard = ({ user, track, devices, currentTrackUri, isPlaying, se
 				<p className="truncate font-semibold text-white">{track.name}</p>
 				<p className="text-xs uppercase opacity-60 text-[#1DB954]">{track.artists.map((a) => a.name).join(", ")}</p>
 			</div>
-			{user?.product?.includes("premium") && (
+			{user?.product?.includes("premium") && activeDevice && (
 				<button
 					className="btn btn-square btn-ghost hover:text-[#1DB954]"
 					onClick={togglePlayPause}
