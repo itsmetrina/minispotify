@@ -16,7 +16,6 @@ export const UserCard = ({ user, lastFetched, devices }: { user: User | null; la
         );
     }
 
-
     const displayFigure = () =>
         user.images?.[0]?.url || "/music_lover.jpg";
 
@@ -75,6 +74,10 @@ export const UserCard = ({ user, lastFetched, devices }: { user: User | null; la
                         {devices?.find((d) => d.is_active)?.name ?? "None"}
                     </p>
 
+                    <p className="text-gray-400">Device Type:</p>
+                    <p className="col-span-2 text-white">
+                        {devices?.find((d) => d.is_active)?.type ?? "Unknown"}
+                    </p>
                 </div>
 
                 <div className="mt-4 flex justify-between text-xs text-gray-400">

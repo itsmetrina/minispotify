@@ -19,14 +19,7 @@ export const TrackCard = ({ user, track, devices }: { user: User | null; track: 
 				<p className="truncate font-semibold text-white">{track.name}</p>
 				<p className="text-xs uppercase opacity-60 text-[#1DB954]">{track.artists.map((a) => a.name).join(", ")}</p>
 			</div>
-			<>{console.log(devices, 'devices')}</>
-			{/* {user?.product?.includes('premium') && (
-				<button className="btn btn-square btn-ghost hover:text-[#1DB954]" onClick={() => playTrack(track.uri)} aria-label="Play track">
-					<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M6 3L20 12 6 21V3z" />
-					</svg>
-				</button>
-			)} */}
+			<>{console.log(devices, track, 'devices, track')}</>
 			{user?.product?.includes("premium") && (
 				<button
 					className="btn btn-square btn-ghost hover:text-[#1DB954]"
