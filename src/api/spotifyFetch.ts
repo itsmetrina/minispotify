@@ -33,10 +33,5 @@ export const spotifyFetch = async (
 		return null;
 	}
 
-    try {
-		return await res.json();
-	} catch (err) {
-		console.warn("Response body is not valid JSON:", err);
-		return null;
-	}
+    return await res.json();
 }
