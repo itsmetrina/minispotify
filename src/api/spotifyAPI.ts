@@ -32,7 +32,7 @@ export const getPlaylists = async (limit: number) => {
     return res.items;
 };
 
-export const getDeviceId = async () => {
+export const getDevices = async () => {
     const res = await spotifyFetch(
         `me/player/devices`,
         "GET"
@@ -44,7 +44,7 @@ export const transferPlayback = async (deviceId: string) => {
     try {
         await spotifyFetch("me/player", "PUT", {
             device_ids: [deviceId],
-            play: true, // starts playback after transfer
+            play: true,
         });
         console.log("Transferred playback to device:", deviceId);
     } catch (error) {

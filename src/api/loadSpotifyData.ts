@@ -1,5 +1,5 @@
 import { useUserStore } from "../store/useUserStore";
-import { getProfile, getTopTracks, getTopArtists, getPlaylists } from "./spotifyAPI";
+import { getProfile, getTopTracks, getTopArtists, getPlaylists, getDevices } from "./spotifyAPI";
 
 export const loadUserSpotifyData = async () => {
 	const { setUserData } = useUserStore.getState();
@@ -7,11 +7,13 @@ export const loadUserSpotifyData = async () => {
 	try {
 		const [
 			userProfile,
+			devices,
 			topTracks,
 			topArtists,
 			playlists
 		] = await Promise.all([
 			getProfile(),
+			getDevices(),
 			getTopTracks(5),
 			getTopArtists(5),
 			getPlaylists(10)
@@ -19,6 +21,7 @@ export const loadUserSpotifyData = async () => {
 
 		setUserData({
 			userProfile,
+			devices,
 			topTracks,
 			topArtists,
 			playlists

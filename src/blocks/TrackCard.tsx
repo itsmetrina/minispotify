@@ -1,42 +1,7 @@
-import { useEffect, useState } from "react";
-import { getDeviceId, pausePlayback, playTrack, transferPlayback } from "../api/spotifyAPI"
-import type { Track, User } from "../types/spotify_data";
+import { playTrack } from "../api/spotifyAPI"
+import type { Device, Track, User } from "../types/spotify_data"
 
-export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: { user: User | null; track: Track; currentTrackUri: string | null; setCurrentTrackUri: (uri: string | null) => void; }) => {
-	const [deviceId, setDeviceId] = useState<string | null>(null);
-	const isPlaying = currentTrackUri === track.uri;
-
-	useEffect(() => {
-		const fetchDeviceId = async () => {
-			try {
-				const res = await getDeviceId();
-				if (res?.devices.length > 0) {
-					setDeviceId(res?.devices[0]?.id);
-				}
-			} catch (err) {
-				console.error("Error fetching devices:", err);
-			}
-		};
-
-		fetchDeviceId();
-	}, []);
-
-	const togglePlayPause = async () => {
-		if (!deviceId) {
-			alert("Please open Spotify on a device first.");
-			return;
-		}
-
-		if (isPlaying) {
-			await pausePlayback();
-			setCurrentTrackUri(null);
-		} else {
-			await transferPlayback(deviceId); // ensure playback is transferred
-			await playTrack(track.uri);
-			setCurrentTrackUri(track.uri);
-		}
-	};
-
+export const TrackCard = ({ user, track, devices }: { user: User | null; track: Track; devices: Device[] | null }) => {
 	return (
 		<li className="flex items-center gap-4 p-3 hover:bg-[#1db9540d] rounded transition-all">
 			<div className="text-lg font-bold text-[#1DB954] w-6">{track.track_number}</div>
@@ -45,21 +10,12 @@ export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: 
 				<p className="truncate font-semibold text-white">{track.name}</p>
 				<p className="text-xs uppercase opacity-60 text-[#1DB954]">{track.artists.map((a) => a.name).join(", ")}</p>
 			</div>
+			<>{console.log(devices, 'devices')}</>
 			{user?.product?.includes('premium') && (
-				<button
-					className="btn btn-square btn-ghost hover:text-[#1DB954]"
-					onClick={togglePlayPause}
-					aria-label={isPlaying ? "Pause track" : "Play track"}
-				>
-					{isPlaying ? (
-						<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M6 4h4v16H6zm8 0h4v16h-4z" />
-						</svg>
-					) : (
-						<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M6 3L20 12 6 21V3z" />
-						</svg>
-					)}
+				<button className="btn btn-square btn-ghost hover:text-[#1DB954]" onClick={() => playTrack(track.uri)} aria-label="Play track">
+					<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M6 3L20 12 6 21V3z" />
+					</svg>
 				</button>
 			)}
 		</li>

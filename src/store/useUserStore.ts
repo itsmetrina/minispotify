@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { createJSONStorage } from "zustand/middleware";
 import { persist } from "zustand/middleware";
-import type { User, Track, Artist, Playlist } from "../types/spotify_data";
+import type { User, Track, Artist, Playlist, Device } from "../types/spotify_data";
 
 interface UserState {
     userProfile: User | null;
+    devices: Device[] | null;
     topTracks: Track[] | null;
     topArtists: Artist[] | null;
     playlists: Playlist[] | null;
@@ -18,6 +19,7 @@ export const useUserStore = create<UserState>()(
     persist(
         (set) => ({
             userProfile: null,
+            devices: null,
             topTracks: null,
             topArtists: null,
             playlists: null,
@@ -31,6 +33,7 @@ export const useUserStore = create<UserState>()(
                         Object.entries(data).filter(([key]) =>
                             [
                                 'userProfile',
+                                'devices',
                                 'topTracks',
                                 'topArtists',
                                 'playlists'
@@ -43,6 +46,7 @@ export const useUserStore = create<UserState>()(
             clearUserData: () =>
                 set({
                     userProfile: null,
+                    devices: null,
                     topTracks: null,
                     topArtists: null,
                     lastFetchedAt: null,

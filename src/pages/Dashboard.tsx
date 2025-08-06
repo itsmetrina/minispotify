@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { ArtistCard } from "../blocks/ArtistCard"
+import { ArtistCard } from "../blocks/ArtistCard";
 import { PlaylistCard } from "../blocks/PlaylistCard";
 import { TrackCard } from "../blocks/TrackCard"
 import { UserCard } from "../blocks/UserCard";
@@ -9,13 +8,12 @@ import EmptyState from "../blocks/EmptyState";
 const Dashboard = () => {
     const {
         userProfile,
+        devices,
         topTracks,
         topArtists,
         playlists,
         lastFetchedAt
     } = useUserStore();
-
-    const [currentTrackUri, setCurrentTrackUri] = useState<string | null>(null);
 
     return (
         <div className="grid grid-cols-1 gap-8 p-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -27,7 +25,7 @@ const Dashboard = () => {
                 <h3 className="text-sm font-semibold uppercase opacity-60">Top Tracks</h3>
                 <ul className="space-y-2">
                     {(topTracks ?? []).length > 0 ? (topTracks?.map((track) => (
-                        <TrackCard key={track.id} user={userProfile} track={track} currentTrackUri={currentTrackUri} setCurrentTrackUri={setCurrentTrackUri} />
+                        <TrackCard key={track.id} user={userProfile} track={track} devices={devices} />
                     ))) : (
                         <EmptyState message="No top tracks found." />
                     )}
