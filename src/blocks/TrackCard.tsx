@@ -1,41 +1,47 @@
 import { useEffect, useState } from "react";
-import { pausePlayback, playTrack } from "../api/spotifyAPI"
+import { pausePlayback, playTrack, transferPlayback } from "../api/spotifyAPI"
 import type { Track, User } from "../types/spotify_data"
 import { spotifyFetch } from "../api/spotifyFetch";
 
-export const TrackCard = ({ user, track }: { user: User | null; track: Track }) => {
-	const [isPlaying, setIsPlaying] = useState(false);
-	const [currentTrackUri, setCurrentTrackUri] = useState<string | null>(null);
+export const TrackCard = ({ user, track, currentTrackUri, setCurrentTrackUri }: { user: User | null; track: Track; currentTrackUri: string | null; setCurrentTrackUri: (uri: string | null) => void; }) => {
+	const [deviceId, setDeviceId] = useState<string | null>(null);
+	const isPlaying = currentTrackUri === track.uri;
 
 	useEffect(() => {
-		const fetchPlaybackState = async () => {
+		const fetchDeviceId = async () => {
 			try {
-				const res = await spotifyFetch("me/player", "GET");
-				if (res?.is_playing && res?.item?.uri === track.uri) {
-					setIsPlaying(true);
-					setCurrentTrackUri(res.item.uri);
+				const res = await spotifyFetch("me/player/devices", "GET");
+				const activeDevice = res.devices?.find((d: any) => d.is_active && d.type !== "Unknown");
+
+				if (activeDevice) {
+					setDeviceId(activeDevice.id);
 				} else {
-					setIsPlaying(false);
+					console.warn("No active Spotify device found.");
 				}
 			} catch (err) {
-				console.error("Error fetching playback state", err);
+				console.error("Error fetching devices:", err);
 			}
 		};
 
-		fetchPlaybackState();
-	}, [track.uri]);
+		fetchDeviceId();
+	}, []);
 
 	const togglePlayPause = async () => {
-		if (isPlaying && currentTrackUri === track.uri) {
+		if (!deviceId) {
+			alert("Please open Spotify on a device first.");
+			return;
+		}
+
+		if (isPlaying) {
 			await pausePlayback();
-			setIsPlaying(false);
+			setCurrentTrackUri(null);
 		} else {
+			await transferPlayback(deviceId); // ensure playback is transferred
 			await playTrack(track.uri);
-			setIsPlaying(true);
 			setCurrentTrackUri(track.uri);
 		}
 	};
-
+	
 	return (
 		<li className="flex items-center gap-4 p-3 hover:bg-[#1db9540d] rounded transition-all">
 			<div className="text-lg font-bold text-[#1DB954] w-6">{track.track_number}</div>
@@ -44,22 +50,34 @@ export const TrackCard = ({ user, track }: { user: User | null; track: Track }) 
 				<p className="truncate font-semibold text-white">{track.name}</p>
 				<p className="text-xs uppercase opacity-60 text-[#1DB954]">{track.artists.map((a) => a.name).join(", ")}</p>
 			</div>
-			{user?.product?.includes('premium') && (
+			{/* {user?.product?.includes('premium') && (
 				<button className="btn btn-square btn-ghost hover:text-[#1DB954]" onClick={togglePlayPause} aria-label={isPlaying ? "Pause track" : "Play track"}>
 					{isPlaying ? (
-						// Pause Icon
 						<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
 							<path d="M6 4h4v16H6zm8 0h4v16h-4z" />
 						</svg>
 					) : (
-						// Play Icon
 						<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
 							<path d="M6 3L20 12 6 21V3z" />
 						</svg>
 					)}
-					{/* <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M6 3L20 12 6 21V3z" />
-					</svg> */}
+				</button>
+			)} */}
+			{user?.product?.includes('premium') && (
+				<button
+					className="btn btn-square btn-ghost hover:text-[#1DB954]"
+					onClick={togglePlayPause}
+					aria-label={isPlaying ? "Pause track" : "Play track"}
+				>
+					{isPlaying ? (
+						<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M6 4h4v16H6zm8 0h4v16h-4z" />
+						</svg>
+					) : (
+						<svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M6 3L20 12 6 21V3z" />
+						</svg>
+					)}
 				</button>
 			)}
 		</li>

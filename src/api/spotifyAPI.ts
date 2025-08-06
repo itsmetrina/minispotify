@@ -32,6 +32,18 @@ export const getPlaylists = async (limit: number) => {
     return res.items;
 };
 
+export const transferPlayback = async (deviceId: string) => {
+    try {
+        await spotifyFetch("me/player", "PUT", {
+            device_ids: [deviceId],
+            play: true, // starts playback after transfer
+        });
+        console.log("Transferred playback to device:", deviceId);
+    } catch (error) {
+        console.error("Failed to transfer playback:", error);
+    }
+};
+
 export const playTrack = async (trackUri: string) => {
     try {
         await spotifyFetch("me/player/play", "PUT", {
