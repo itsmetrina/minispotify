@@ -40,27 +40,15 @@ export const getDevices = async () => {
     return res.items;
 };
 
-export const transferPlayback = async (deviceId: string) => {
-    try {
-        await spotifyFetch("me/player", "PUT", {
-            device_ids: [deviceId],
-            play: true,
-        });
-        console.log("Transferred playback to device:", deviceId);
-    } catch (error) {
-        console.error("Failed to transfer playback:", error);
-    }
-};
-
-export const playTrack = async (trackUri: string) => {
-    try {
-        await spotifyFetch("me/player/play", "PUT", {
-            uris: [trackUri],
-        });
-        console.log("Playback started");
-    } catch (error) {
-        console.error("Failed to play track:", error);
-    }
+export const playTrack = async (trackUri: string, deviceId?: string) => {
+	try {
+		await spotifyFetch(`me/player/play${deviceId ? `?device_id=${deviceId}` : ''}`, "PUT", {
+			uris: [trackUri],
+		});
+		console.log("Playback started");
+	} catch (error) {
+		console.error("Failed to play track:", error);
+	}
 };
 
 export const pausePlayback = async () => {

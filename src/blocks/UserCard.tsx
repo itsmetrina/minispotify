@@ -1,7 +1,7 @@
-import type { User } from '../types/spotify_data';
+import type { Device, User } from '../types/spotify_data';
 import { logout } from '../utils/auth';
 
-export const UserCard = ({ user, lastFetched }: { user: User | null; lastFetched: any }) => {
+export const UserCard = ({ user, lastFetched, devices }: { user: User | null; lastFetched: any; devices: Device[] | null }) => {
     if (!user) {
         return (
             <div className="bg-base-100 p-6 rounded-2xl shadow animate-pulse flex items-center gap-6">
@@ -69,6 +69,12 @@ export const UserCard = ({ user, lastFetched }: { user: User | null; lastFetched
 
                     <p className="text-gray-400">🌍 Country:</p>
                     <p className="col-span-2 text-white">{getCountryName(user.country)}</p>
+
+                    <p className="text-gray-400">📱 Active Device:</p>
+                    <p className="col-span-2 text-white">
+                        {devices?.find((d) => d.is_active)?.name ?? "None"}
+                    </p>
+
                 </div>
 
                 <div className="mt-4 flex justify-between text-xs text-gray-400">
